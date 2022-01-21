@@ -1,7 +1,7 @@
 {
-    "name": "babylonjs-typescript-webpack-simple-scene",
+    "name": "test",
     "version": "0.0.1",
-    "description": "A simple scene using Babylon.js, typescript and webpack. What could go wrong?",
+    "description": "A test",
     "main": "index.ts",
     "dependencies": {
         "@babylonjs/core": "5.0.0-alpha.61",
@@ -32,7 +32,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/RaananW/babylonjs-webpack-es6.git"
+        "url": "git+https://github.com/SofiaCronstrom/test.git"
     },
     "keywords": [
         "Babylon.js",
@@ -42,13 +42,12 @@
         "es6"
     ],
     "author": {
-        "name": "Raanan Weber",
-        "email": "info@raananweber.com",
-        "url": "http://blog.raananweber.com/"
+        "name": "Sofia Cronström"
+        
     },
     "license": "Apache-2.0",
     "bugs": {
-        "url": "https://github.com/RaananW/babylonjs-webpack-es6/issues"
+        "url": "https://github.com/SofiaCronstrom/test.git/issues"
     },
-    "homepage": "https://github.com/RaananW/babylonjs-webpack-es6"
+    "homepage": "https://github.com/SofiaCronstrom/test.git"
 }
