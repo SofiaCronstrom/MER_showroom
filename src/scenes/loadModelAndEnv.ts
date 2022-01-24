@@ -16,8 +16,8 @@ import "@babylonjs/core/Materials/Textures/Loaders/envTextureLoader";
 
 
 // digital assets
-import controllerModel from "../../assets/glb/samsung-controller.glb";
-import roomEnvironment from "../../assets/environment/room.env"
+import wallModel from "../../assets/glb/museum-walls.glb";
+import roofModel from "../../assets/glb/museum-roof.glb"
 
 export class LoadModelAndEnvScene implements CreateSceneClass {
     createScene = async (
@@ -45,14 +45,7 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
 
         camera.useFramingBehavior = true;
 
-        // load the environment file
-        scene.environmentTexture = new CubeTexture(roomEnvironment, scene);
-
-        // if not setting the envtext of the scene, we have to load the DDS module as well
-        new EnvironmentHelper( {
-            skyboxTexture: roomEnvironment,
-            createGround: false
-        }, scene)
+       
 
         // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
         const light = new HemisphericLight(
@@ -67,14 +60,25 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         const importResult = await SceneLoader.ImportMeshAsync(
             "",
             "",
-            controllerModel,
+            wallModel,
             scene,
             undefined,
             ".glb"
         );
 
         // just scale it so we can see it better
-        importResult.meshes[0].scaling.scaleInPlace(10);
+        importResult.meshes[0].scaling = new Vector3(1.5,1.28,1.38)
+        
+        const importResult2 = await SceneLoader.ImportMeshAsync(
+            "",
+            "",
+            roofModel,
+            scene,
+            undefined,
+            ".glb"
+        );
+
+        importResult2.meshes[0].scaling = new Vector3(1.5,1.28,1.38);
 
         return scene;
     };
