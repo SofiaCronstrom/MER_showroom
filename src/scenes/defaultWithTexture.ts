@@ -1,18 +1,12 @@
-import { Engine } from "@babylonjs/core/Engines/engine";
-import { Scene } from "@babylonjs/core/scene";
-import { ArcRotateCamera } from "@babylonjs/core/Cameras/arcRotateCamera";
-import { Vector3 } from "@babylonjs/core/Maths/math.vector";
-import { HemisphericLight } from "@babylonjs/core/Lights/hemisphericLight";
-import { SphereBuilder } from "@babylonjs/core/Meshes/Builders/sphereBuilder";
-import { GroundBuilder } from "@babylonjs/core/Meshes/Builders/groundBuilder";
-import { StandardMaterial } from "@babylonjs/core/Materials/standardMaterial";
+import { Engine, MeshBuilder, Scene, ArcRotateCamera, Vector3, HemisphericLight, SceneLoader, Material} from "@babylonjs/core";
+import "@babylonjs/loaders/glTF";
 import {CreateSceneClass} from "../createScene";
 
 // If you don't need the standard material you will still need to import it since the scene requires it.
 // import "@babylonjs/core/Materials/standardMaterial";
-import { Texture } from "@babylonjs/core/Materials/Textures/texture";
 
-import grassTextureUrl from "../../assets/grass.jpg";
+import {walls} from "../../assets/glb/museum-walls.glb";
+
 
 export class DefaultSceneWithTexture implements CreateSceneClass {
 
@@ -46,7 +40,7 @@ export class DefaultSceneWithTexture implements CreateSceneClass {
         light.intensity = 0.7;
     
         // Our built-in 'sphere' shape.
-        const sphere = SphereBuilder.CreateSphere(
+        const sphere = MeshBuilder.CreateSphere(
             "sphere",
             { diameter: 2, segments: 32 },
             scene
@@ -56,17 +50,23 @@ export class DefaultSceneWithTexture implements CreateSceneClass {
         sphere.position.y = 1;
     
         // Our built-in 'ground' shape.
-        const ground = GroundBuilder.CreateGround(
+        const ground = MeshBuilder.CreateGround(
             "ground",
             { width: 6, height: 6 },
             scene
         );
-    
-        // Load a texture to be used as the ground material
-        const groundMaterial = new StandardMaterial("ground material", scene);
-        groundMaterial.diffuseTexture = new Texture(grassTextureUrl, scene);
-    
-        ground.material = groundMaterial;
+       
+        const importResult = await SceneLoader.ImportMeshAsync(
+            "",
+            "",
+            walls,
+            scene,
+            undefined,
+            ".glb"
+        );
+         
+       
+        
     
         return scene;
     };
