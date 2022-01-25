@@ -8,7 +8,9 @@ import { Engine,
     StandardMaterial, 
     UniversalCamera,
     DirectionalLight,
-    PointLight
+    PointLight,
+    Color3,
+    Color4
  } from "@babylonjs/core";
 
 import { CreateSceneClass } from "../createScene";
@@ -30,7 +32,8 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
     ): Promise<Scene> => {
         // This creates a basic Babylon Scene object (non-mesh)
         const scene = new Scene(engine);
-
+        scene.clearColor = new Color4(0.937,0.925,0.925);
+        scene.ambientColor = new Color3(0.980, 0.976, 0.901);
         // This creates and positions a free camera (non-mesh)
             const camera = new ArcRotateCamera(
                 "my first camera",
@@ -49,11 +52,23 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         // This attaches the camera to the canvas
         camera.attachControl(canvas, true);
 
-        //camera.useFramingBehavior = true;
+        
+        //Material to room scene and windows
+        const roomColor = new StandardMaterial('roomColor', scene);
+        roomColor.diffuseColor = new Color3(0.984, 0.988, 0.980);
+        roomColor.emissiveColor = new Color3(0.039, 0.016, 0.137) 
+        roomColor.ambientColor = new Color3(0.22,0.22,0.035)
+        roomColor.specularColor = new Color3(0.973,0.973,0.973)
+        
+        const stairColor = new StandardMaterial('stairColor', scene);
+        stairColor.diffuseColor = new Color3(0.556, 0.521, 0.419);
+        
+        const windowColor = new StandardMaterial('stairColor', scene);
+        windowColor.emissiveColor = new Color3(1, 1, 1);
 
        
 
-        // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
+        // This creates a light
         const light1 = new PointLight("spot02", new Vector3(476.92, 1167.96, 1329.6),
         scene);
         const light2: DirectionalLight = new DirectionalLight("light3", new Vector3(-1,-2,-1), scene)
@@ -71,10 +86,10 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
             undefined,
             ".glb"
         );
-
+      
         // just scale it so we can see it better
         importResult.meshes[0].scaling = new Vector3(1.5,1.28,1.38)
-        
+        importResult.meshes[1].material = roomColor;
         const importResult2 = await SceneLoader.ImportMeshAsync(
             "",
             "",
@@ -85,6 +100,11 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         );
 
         importResult2.meshes[0].scaling = new Vector3(1.5,1.28,1.38);
+        importResult2.meshes[0].material = stairColor;
+        
+        scene.debugLayer.show({
+            embedMode: true,
+          });
 
         return scene;
     };

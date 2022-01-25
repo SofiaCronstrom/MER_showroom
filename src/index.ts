@@ -1,4 +1,5 @@
 import { Engine } from "@babylonjs/core/Engines/engine";
+import '@babylonjs/inspector';
 import { getSceneModuleWithName } from "./createScene";
 
 const getModuleToLoad = (): string | undefined => location.search.split('scene=')[1];
@@ -17,6 +18,10 @@ export const babylonInit = async (): Promise<void>  => {
 
     // Create the scene
     const scene = await createSceneModule.createScene(engine, canvas);
+    
+    scene.debugLayer.show({
+        embedMode: true,
+      });
 
     // Register a render loop to repeatedly render the scene
     engine.runRenderLoop(function () {

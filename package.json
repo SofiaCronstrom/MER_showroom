@@ -5,6 +5,7 @@
     "main": "index.ts",
     "dependencies": {
         "@babylonjs/core": "5.0.0-alpha.61",
+        "@babylonjs/inspector": "^4.2.1",
         "@babylonjs/loaders": "5.0.0-alpha.61",
         "ammo.js": "github:kripken/ammo.js"
     },
@@ -43,7 +44,6 @@
     ],
     "author": {
         "name": "Sofia Cronström"
-        
     },
     "license": "Apache-2.0",
     "bugs": {
