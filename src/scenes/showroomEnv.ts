@@ -20,7 +20,7 @@ import { CreateSceneClass } from "../createScene";
 // required imports
 import "@babylonjs/core/Loading/loadingScreen";
 import "@babylonjs/loaders/glTF";
-import "@babylonjs/core/Materials/Textures/Loaders/envTextureLoader";
+
 
 
 // digital assets
@@ -39,21 +39,21 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
 
 
         // This creates and positions a free camera (non-mesh)
-            // const camera = new ArcRotateCamera(
-            //     "camera",
-            //     0,
-            //     Math.PI / 3,
-            //     10,
-            //     new Vector3(0, 0, 0),
-            //     scene
-            // );
+            const camera = new ArcRotateCamera(
+                "camera",
+                0,
+                Math.PI / 3,
+                10,
+                new Vector3(0, 0, 0),
+                scene
+            );
 
-            const camera = new UniversalCamera("camera1", new Vector3(206, 30, 842), scene);
+            // const camera = new UniversalCamera("camera1", new Vector3(206, 30, 842), scene);
             
         // This targets the camera to scene origin
         camera.setTarget(Vector3.Zero());
-        camera.rotation = new Vector3(0,-15,0)
-        camera.speed = 6;
+                // camera.rotation = new Vector3(0,-15,0)
+                // camera.speed = 6;
         // This attaches the camera to the canvas
         camera.attachControl(canvas, true);
 
@@ -92,7 +92,7 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
             ".glb"
         );
       
-        // just scaling and adding material to the room
+        // // just scaling and adding material to the room
         importResult.meshes[0].scaling = new Vector3(1.5,1.28,1.38)
         importResult.meshes[1].material = roomColor;
 
@@ -106,7 +106,7 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
             ".glb"
         );
         
-        //adding material ang changing scale of roofmodel
+        // //adding material ang changing scale of roofmodel
         importResult2.meshes[0].scaling = new Vector3(1.5,1.28,1.38);
         importResult2.meshes[1].material = roomColor;
         
@@ -135,15 +135,15 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
 
         //Position stair meshes
         let stairsArray = [];
-        stairsArray.push([1, 0, 204.828, -90]);
-        stairsArray.push([1, 0, 169.521, -40]);
-        stairsArray.push([1, 0, 134.2, 0]);
-        stairsArray.push([1, 0, 98.9, 40]);
-        stairsArray.push([1, 0, 63.6, 90]);
-        stairsArray.push([1, 0, 28.3, 140]);
-        stairsArray.push([1, 0, -7, 190]);
-        stairsArray.push([1, 0, -76.67, 294.31 ]);
-        stairsArray.push([1, 0, -111.67, 344.67]);
+        stairsArray.push([1, 0, 204.83, -129.25]);
+        stairsArray.push([1, 0, 169.52, -78.15]);
+        stairsArray.push([1, 0, 134.2, -26.72]);
+        stairsArray.push([1, 0, 98.90, 24.11]);
+        stairsArray.push([1, 0, 63.6, 74.82]);
+        stairsArray.push([1, 0, 28.3, 125.88]);
+        stairsArray.push([1, 0, -7, 177.51]);
+        stairsArray.push([1, 0, -76.67, 284.17 ]);
+        stairsArray.push([1, 0, -111.67, 337.63]);
         let stepsArray: any = []
 
         for (let i in stairsArray){
@@ -181,18 +181,9 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         const secondSection: any = Mesh.MergeMeshes([ secondPlane, quadrantPlane, rightPlane, leftPlane])
         secondSection.scaling = new Vector3(1.16,1,1.27)
         secondSection.position = new Vector3(0,200.51,-84)
-
-
-
-
-
-
-
-
-
-        scene.debugLayer.show({
-            embedMode: true,
-          });
+        
+        
+      
 
         return scene;
     };
