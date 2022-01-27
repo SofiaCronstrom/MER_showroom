@@ -39,21 +39,21 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         
 
         // This creates and positions a free camera (non-mesh)
-            const camera = new ArcRotateCamera(
-                "camera",
-                0,
-                Math.PI / 3,
-                10,
-                new Vector3(0, 0, 0),
-                scene
-            );
+            // const camera = new ArcRotateCamera(
+            //     "camera",
+            //     0,
+            //     Math.PI / 3,
+            //     10,
+            //     new Vector3(0, 0, 0),
+            //     scene
+            // );
 
-            // const camera = new UniversalCamera("camera1", new Vector3(206, 30, 842), scene);
+            const camera = new UniversalCamera("camera1", new Vector3(206, 30, 842), scene);
             
         // This targets the camera to scene origin
                 camera.setTarget(Vector3.Zero());
-                // camera.rotation = new Vector3(0,-15,0)
-                // camera.speed = 6;
+                camera.rotation = new Vector3(0,-15,0)
+                camera.speed = 6;
                 
         // This attaches the camera to the canvas
                 camera.attachControl(canvas, true);
@@ -188,7 +188,7 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         secondSection.position = new Vector3(0,200.51,-84)
         
         // //GRAVITY and COLLISION
-        // scene.gravity = new Vector3(0, -0.05, 0);
+        // scene.gravity = new Vector3(0, 0, 0);
         // // Enable Collisions
         // scene.collisionsEnabled = true;
 
@@ -196,11 +196,11 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         // camera.checkCollisions = true;
         // camera.applyGravity = true;
         // //Set the ellipsoid around the camera (e.g. your player's size)
-        // camera.ellipsoid = new Vector3(1, 1, 1);
+        // camera.ellipsoid = new Vector3(1, 2, 1);
         
-        // //Wich meshes are collisionable
+        // // //Wich meshes are collisionable
         // importResult.meshes[1].checkCollisions = true;
-
+        // ground.checkCollisions = true;
         return scene;
     };
 }
