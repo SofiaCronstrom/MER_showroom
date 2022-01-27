@@ -36,7 +36,7 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         const scene = new Scene(engine);
         scene.clearColor = new Color4(0.937,0.925,0.925);
         scene.ambientColor = new Color3(0.980, 0.976, 0.901);
-
+        
 
         // This creates and positions a free camera (non-mesh)
             const camera = new ArcRotateCamera(
@@ -51,11 +51,12 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
             // const camera = new UniversalCamera("camera1", new Vector3(206, 30, 842), scene);
             
         // This targets the camera to scene origin
-        camera.setTarget(Vector3.Zero());
+                camera.setTarget(Vector3.Zero());
                 // camera.rotation = new Vector3(0,-15,0)
                 // camera.speed = 6;
+                
         // This attaches the camera to the canvas
-        camera.attachControl(canvas, true);
+                camera.attachControl(canvas, true);
 
         
         //Material to room scene and windows
@@ -80,8 +81,12 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         light2.direction = new Vector3(0.72, -0.21, -0.67);
         light2.intensity = 0.7
 
-        
-        
+        //create ground
+        const ground: Mesh = MeshBuilder.CreateGround("ground", {height: 800, width: 800, subdivisions: 4}, scene);
+        ground.position = new Vector3(1.25, 0.25, -5.28);
+        ground.scaling = new Vector3(1.984, 1, 2.708);
+        ground.material = roomColor;
+
         //room model
         const importResult = await SceneLoader.ImportMeshAsync(
             "",
@@ -182,8 +187,19 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         secondSection.scaling = new Vector3(1.16,1,1.27)
         secondSection.position = new Vector3(0,200.51,-84)
         
+        // //GRAVITY and COLLISION
+        // scene.gravity = new Vector3(0, -0.05, 0);
+        // // Enable Collisions
+        // scene.collisionsEnabled = true;
+
+        // //Then apply collisions and gravity to the active camera
+        // camera.checkCollisions = true;
+        // camera.applyGravity = true;
+        // //Set the ellipsoid around the camera (e.g. your player's size)
+        // camera.ellipsoid = new Vector3(1, 1, 1);
         
-      
+        // //Wich meshes are collisionable
+        // importResult.meshes[1].checkCollisions = true;
 
         return scene;
     };
