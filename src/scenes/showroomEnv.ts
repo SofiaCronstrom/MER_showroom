@@ -2,7 +2,6 @@ import { Engine,
     Scene, 
     ArcRotateCamera,
     Vector3,
-    HemisphericLight, 
     SceneLoader, 
     FreeCamera, 
     StandardMaterial, 
@@ -12,7 +11,8 @@ import { Engine,
     Color3,
     Color4, 
     Mesh,
-    MeshBuilder
+    MeshBuilder,
+    RecastJSPlugin
  } from "@babylonjs/core";
 
 import { CreateSceneClass } from "../createScene";
@@ -36,7 +36,9 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         const scene = new Scene(engine);
         scene.clearColor = new Color4(0.937,0.925,0.925);
         scene.ambientColor = new Color3(0.980, 0.976, 0.901);
-        
+        // scene.gravity = new Vector3(0, -0.01, 0);
+        // Enable Collisions
+        scene.collisionsEnabled = true;
 
         // This creates and positions a free camera (non-mesh)
             // const camera = new ArcRotateCamera(
@@ -48,20 +50,26 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
             //     scene
             // );
 
-            const camera = new UniversalCamera("camera1", new Vector3(206, 30, 842), scene);
+            const camera = new FreeCamera("FreeCamera", new Vector3(0,0,0), scene);
             
         // This targets the camera to scene origin
-                camera.setTarget(Vector3.Zero());
+                //camera.setTarget(Vector3.Zero());
                 camera.rotation = new Vector3(0,-15,0)
                 camera.speed = 6;
-                
-        // This attaches the camera to the canvas
-                camera.attachControl(canvas, true);
+                //camera.minZ = .01;
+                camera.position = new Vector3(0, 100,0)
+                 //Then apply collisions and gravity to the active camera
+        //         camera.checkCollisions = true;
+        //         camera.applyGravity = true;
+        //         //Set the ellipsoid around the camera (e.g. your player's size)
+        //         camera.ellipsoid = new Vector3(10, 1, 5);
+        // // This attaches the camera to the canvas
+        //         camera.attachControl(canvas, true);
 
         
         //Material to room scene and windows
         const roomColor = new StandardMaterial('roomColor', scene);
-        roomColor.diffuseColor = new Color3(0.984, 0.988, 0.980);
+        //roomColor.diffuseColor = new Color3(0.984, 0.988, 0.980);
         roomColor.emissiveColor = new Color3(0.039, 0.016, 0.137) 
         roomColor.ambientColor = new Color3(0.22,0.22,0.035)
         roomColor.specularColor = new Color3(0.973,0.973,0.973)
@@ -127,6 +135,8 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
 
         const stairs: any = Mesh.MergeMeshes([stairPlane, stairInstance]);
         stairs.position = new Vector3(0, -41.11, 243.97);
+        // stairs.showBoundingBox = true;
+        // stairs.backFaceCulling = true;
         
         //window meshes
         const windowLeft: Mesh = MeshBuilder.CreatePlane('windowLeft', {width: 1700, height: 300, sideOrientation: Mesh.DOUBLESIDE}); 
@@ -157,7 +167,7 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
             stepsArray[i].position.x = stairsArray[i][1]
             stepsArray[i].position.y = stairsArray[i][2]
             stepsArray[i].position.z = stairsArray[i][3]
-
+            
             
         }
 
@@ -187,20 +197,16 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         secondSection.scaling = new Vector3(1.16,1,1.27)
         secondSection.position = new Vector3(0,200.51,-84)
         
-        // //GRAVITY and COLLISION
-        // scene.gravity = new Vector3(0, 0, 0);
-        // // Enable Collisions
-        // scene.collisionsEnabled = true;
-
-        // //Then apply collisions and gravity to the active camera
-        // camera.checkCollisions = true;
-        // camera.applyGravity = true;
-        // //Set the ellipsoid around the camera (e.g. your player's size)
-        // camera.ellipsoid = new Vector3(1, 2, 1);
-        
-        // // //Wich meshes are collisionable
+       
+        // // //GRAVITY and COLLISION
+      
         // importResult.meshes[1].checkCollisions = true;
+        // importResult.meshes[0].checkCollisions = true;
+       
         // ground.checkCollisions = true;
+        // stairPlane.checkCollisions = true;
+        // stairInstance.checkCollisions = true;
+        // stairs.checkCollisions = true;
         return scene;
     };
 }
