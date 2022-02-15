@@ -134,6 +134,17 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         secondSection.scaling = new Vector3(1.16,1,1.27)
         secondSection.position = new Vector3(0,200.51,-84)
 
+        //COLLISION MESHES
+        const collPlane: Mesh = MeshBuilder.CreatePlane('collisionplane',{width: 1550, height: 200, sideOrientation: Mesh.DOUBLESIDE});
+        collPlane.position = new Vector3(0, 99.31, -1032.14);
+        //collPlane.isVisible = false;
+        collPlane.showBoundingBox = true;
+
+        const collPlane2 = collPlane.clone('collisionplane2');
+        collPlane2.position = new Vector3(0, 99.31, 1032.14);
+
+        const collPlaneLong: Mesh = MeshBuilder.CreatePlane('collisionLong', {width: 2000, height: 200, sideOrientation: Mesh.DOUBLESIDE});
+        collPlaneLong.rotation = new Vector3(0, Math.PI/2, 0)
 
          // // //GRAVITY and COLLISION
       
