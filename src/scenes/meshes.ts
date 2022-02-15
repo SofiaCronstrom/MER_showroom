@@ -154,17 +154,21 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         collPlaneLong2.showBoundingBox = true;
 
         const collStairs: Mesh = MeshBuilder.CreatePlane('collisionStairs', {width: 800, height: 300, sideOrientation: Mesh.DOUBLESIDE});
-        collStairs.position = new Vector3(-295.18, 132.34, -320.93);
-        collStairs.rotation = new Vector3(Math.PI/3.5, -Math.PI/1, -Math.PI/2)
+        collStairs.position = new Vector3(-293.46, 119.26, -298.51);
+        collStairs.rotation = new Vector3(Math.PI/3.3, -Math.PI/1, -Math.PI/2)
+        collStairs.showBoundingBox = true;
+
+
          // // //GRAVITY and COLLISION
       
-        // importResult.meshes[1].checkCollisions = true;
-        // importResult.meshes[0].checkCollisions = true;
+        
        
-        // ground.checkCollisions = true;
-        // stairPlane.checkCollisions = true;
-        // stairInstance.checkCollisions = true;
-        // stairs.checkCollisions = true;
+        ground.checkCollisions = true;
+        collStairs.checkCollisions = true;
+        collPlaneLong.checkCollisions = true;
+        collPlaneLong2.checkCollisions = true;
+        collPlane.checkCollisions = true;
+        collPlane2.checkCollisions = true;
 
     return scene;
     };

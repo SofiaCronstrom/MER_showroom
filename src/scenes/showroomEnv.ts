@@ -33,22 +33,22 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
       
 
         // This creates and positions a free camera (non-mesh)
-            const camera = new ArcRotateCamera(
-                "camera",
-                0,
-                Math.PI / 3,
-                10,
-                new Vector3(0, 0, 0),
-                scene
-            );
+            // const camera = new ArcRotateCamera(
+            //     "camera",
+            //     0,
+            //     Math.PI / 3,
+            //     10,
+            //     new Vector3(0, 0, 0),
+            //     scene
+            // );
 
-            // const camera = new FreeCamera("FreeCamera", new Vector3(0,0,0), scene);
+            const camera = new FreeCamera("FreeCamera", new Vector3(0,0,0), scene);
             
         // This targets the camera to scene origin
-                //camera.setTarget(Vector3.Zero());
-                // camera.rotation = new Vector3(0,-15,0)
-                // camera.speed = 6;
-                // camera.position = new Vector3(0, 100,0)
+                camera.setTarget(Vector3.Zero());
+                camera.rotation = new Vector3(0,-15,0)
+                camera.speed = 6;
+                camera.position = new Vector3(0, 100,0)
          
         // // This attaches the camera to the canvas
                 camera.attachControl(canvas, true);
