@@ -58,7 +58,7 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         // //adding material ang changing scale of roofmodel
         importResult2.meshes[0].scaling = new Vector3(1.5,1.28,1.38);
         importResult2.meshes[1].material = createColorMaterial(scene).roomColor;
-
+        
 
 
          //STAIR MESHES
@@ -143,9 +143,19 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         const collPlane2 = collPlane.clone('collisionplane2');
         collPlane2.position = new Vector3(0, 99.31, 1032.14);
 
-        const collPlaneLong: Mesh = MeshBuilder.CreatePlane('collisionLong', {width: 2000, height: 200, sideOrientation: Mesh.DOUBLESIDE});
-        collPlaneLong.rotation = new Vector3(0, Math.PI/2, 0)
+        const collPlaneLong: Mesh = MeshBuilder.CreatePlane('collisionLong', {width: 2100, height: 200, sideOrientation: Mesh.DOUBLESIDE});
+        collPlaneLong.position = new Vector3(-743.708, 99.31, 0);
+        collPlaneLong.rotation = new Vector3(0, Math.PI/2, 0);
+        collPlaneLong.showBoundingBox = true;
 
+        const collPlaneLong2 = collPlaneLong.clone('collisionLong2');
+        collPlaneLong2.position = new Vector3(743.708, 99.31, 0);
+        collPlaneLong2.rotation = new Vector3(0, Math.PI/2, 0);
+        collPlaneLong2.showBoundingBox = true;
+
+        const collStairs: Mesh = MeshBuilder.CreatePlane('collisionStairs', {width: 800, height: 300, sideOrientation: Mesh.DOUBLESIDE});
+        collStairs.position = new Vector3(-295.18, 132.34, -320.93);
+        collStairs.rotation = new Vector3(Math.PI/3.5, -Math.PI/1, -Math.PI/2)
          // // //GRAVITY and COLLISION
       
         // importResult.meshes[1].checkCollisions = true;
