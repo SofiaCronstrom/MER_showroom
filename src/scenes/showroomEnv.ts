@@ -33,27 +33,27 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         scene.gravity = new Vector3(0, -0.15, 0);
 
         // This creates and positions a free camera (non-mesh)
-            // const camera = new ArcRotateCamera(
-            //     "camera",
-            //     0,
-            //     Math.PI / 3,
-            //     10,
-            //     new Vector3(0, 0, 0),
-            //     scene
-            // );
+            const camera = new ArcRotateCamera(
+                "camera",
+                0,
+                Math.PI / 3,
+                10,
+                new Vector3(0, 0, 0),
+                scene
+            );
 
-            const camera = new FreeCamera("FreeCamera", new Vector3(0,0,0), scene);
+            // const camera = new FreeCamera("FreeCamera", new Vector3(0,0,0), scene);
             
         // This targets the camera to scene origin
-                //camera.setTarget(Vector3.Zero());
-                camera.rotation = new Vector3(0,-15,0)
-                camera.speed = 6;
-                camera.position = new Vector3(0, 100,0)
-                camera.applyGravity = true;
-                camera.ellipsoid = new Vector3(2, 2, 2);
-        // // This attaches the camera to the canvas
-                scene.collisionsEnabled = true;
-                camera.checkCollisions = true;
+                camera.setTarget(Vector3.Zero());
+        //         camera.rotation = new Vector3(0,-15,0)
+        //         camera.speed = 6;
+        //         camera.position = new Vector3(0, 200,0)
+        //         camera.applyGravity = true;
+        //         camera.ellipsoid = new Vector3(2, 2, 2);
+        // // // This attaches the camera to the canvas
+        //         scene.collisionsEnabled = true;
+        //         camera.checkCollisions = true;
                 camera.attachControl(canvas, true);
 
         
@@ -66,11 +66,11 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         const light2: DirectionalLight = new DirectionalLight("light2", new Vector3(-754.58, 760.6,1033.2), scene)
         light2.direction = new Vector3(0.66, -0.43, -0.62);
         light2.intensity = 0.3
-        const light3 = new DirectionalLight("light3", new Vector3(749.79, 765.11, 970),
+        const light3 = new DirectionalLight("light3", new Vector3(445.055, 165.035, -1032.513),
         scene);
         light3.direction = new Vector3(-0.66, -0.33, -0.67)
         light3.intensity = 0.1
-        const light4 = new DirectionalLight("light4", new Vector3(749.79, 765.11, -970),
+        const light4 = new DirectionalLight("light4", new Vector3(-641.619, 172.217, 692.893),
         scene);
         light4.direction = new Vector3(-0.66, -0.33, -0.67)
         light4.intensity = 0.3

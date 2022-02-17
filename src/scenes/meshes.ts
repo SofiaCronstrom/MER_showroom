@@ -30,63 +30,61 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         ground.material = createColorMaterial(scene).roomColor;
 
 
-        //ROOM MODEL
-        const importResult = await SceneLoader.ImportMeshAsync(
-            "",
-            "",
-            wallModel,
-            scene,
-            undefined,
-            ".glb"
-        );
+        // //ROOM MODEL
+        // const importResult = await SceneLoader.ImportMeshAsync(
+        //     "",
+        //     "",
+        //     wallModel,
+        //     scene,
+        //     undefined,
+        //     ".glb"
+        // );
       
-        //scaling and adding material
-        importResult.meshes[0].scaling = new Vector3(1.5,1.28,1.38)
-        importResult.meshes[1].material = createColorMaterial(scene).roomColor;
+        // //scaling and adding material
+        // importResult.meshes[0].scaling = new Vector3(1.5,1.28,1.38)
+        // importResult.meshes[1].material = createColorMaterial(scene).roomColor;
 
 
-        //ROOF MODEL
-        const importResult2 = await SceneLoader.ImportMeshAsync(
-            "",
-            "",
-            roofModel,
-            scene,
-            undefined,
-            ".glb"
-        );
+        // //ROOF MODEL
+        // const importResult2 = await SceneLoader.ImportMeshAsync(
+        //     "",
+        //     "",
+        //     roofModel,
+        //     scene,
+        //     undefined,
+        //     ".glb"
+        // );
         
-        // //adding material ang changing scale of roofmodel
-        importResult2.meshes[0].scaling = new Vector3(1.5,1.28,1.38);
-        importResult2.meshes[1].material = createColorMaterial(scene).roomColor;
+        // // //adding material ang changing scale of roofmodel
+        // importResult2.meshes[0].scaling = new Vector3(1.5,1.28,1.38);
+        // importResult2.meshes[1].material = createColorMaterial(scene).roomColor;
         
 
 
          //STAIR MESHES
-         const stairPlane: Mesh = MeshBuilder.CreatePlane('stair1', {width: 200, height: 30, sideOrientation: Mesh.DOUBLESIDE}, scene); 
-         stairPlane.position =  new Vector3 (-300, 130, -525);
+         const stairPlane: Mesh = MeshBuilder.CreateBox('stair1', {width: 200, height: 30, depth: 5}, scene); 
+         stairPlane.position =  new Vector3 (-300, 130, -522.5);
          stairPlane.material = createColorMaterial(scene).roomColor;
  
-         const stairInstance: Mesh = MeshBuilder.CreatePlane('stair1', {width: 300, height: 50, sideOrientation: Mesh.DOUBLESIDE}, scene); 
-         stairInstance.rotation = new Vector3(Math.PI/2, 0, 0);
+         const stairInstance: Mesh = MeshBuilder.CreateBox('stair2', {width: 300, height: 50, depth: 10 }, scene); 
+        stairInstance.rotation = new Vector3(Math.PI/2, 0, 0);
          stairInstance.position = new Vector3 (-300, 110, -500);
-         
+         stairInstance.material = createColorMaterial(scene).windowColor;
  
          const stairs: any = Mesh.MergeMeshes([stairPlane, stairInstance]);
-         stairs.position = new Vector3(0, -41.11, 243.97);
-         // stairs.showBoundingBox = true;
-         // stairs.backFaceCulling = true;
+         stairs.position = new Vector3(0, -117.64, 224.57);
 
         //Position stair meshes (Refactor this part)
         let stairsArray = [];
-        stairsArray.push([1, 0, 204.83, -129.25]);
-        stairsArray.push([1, 0, 169.52, -78.15]);
-        stairsArray.push([1, 0, 134.2, -26.72]);
-        stairsArray.push([1, 0, 98.90, 24.11]);
-        stairsArray.push([1, 0, 63.6, 74.82]);
-        stairsArray.push([1, 0, 28.3, 125.88]);
-        stairsArray.push([1, 0, -7, 177.51]);
-        stairsArray.push([1, 0, -76.67, 284.17 ]);
-        stairsArray.push([1, 0, -111.67, 337.63]);
+        stairsArray.push([1, 0, 202.36, -135.43]);
+        stairsArray.push([1, 0, 162.36, -90.43]);
+        stairsArray.push([1, 0, 122.36, -45.43]);
+        stairsArray.push([1, 0, 82.36, -0.43]);
+        stairsArray.push([1, 0, 42.36, 44.57]);
+        stairsArray.push([1, 0, 2.36, 89.57]);
+        stairsArray.push([1, 0, -37.64, 134.57]);
+        stairsArray.push([1, 0, -77.64, 179.57]);
+
         let stepsArray: any = []
 
         for (let i in stairsArray){
@@ -109,36 +107,36 @@ export const MeshesInMainRoom = async (scene: Scene) => {
 
 
         //SECOND PLANE MESH
-        const secondPlane: Mesh = MeshBuilder.CreatePlane('secondPlane', {width: 1300, height: 300, sideOrientation: Mesh.DOUBLESIDE}); 
+        const secondPlane: Mesh = MeshBuilder.CreateBox('secondPlane', {width: 1300, height: 300, depth: 10}); 
         secondPlane.position = new Vector3(0, 147, -600)
         secondPlane.rotation = new Vector3(Math.PI/2, 0, 0);
-        secondPlane.material = createColorMaterial(scene).roomColor;
+       
     
         const rightPlane = secondPlane.clone('rightPlane');
         rightPlane.position = new Vector3(-550, 147, -404);
-        rightPlane.scaling = new Vector3(0.3,0.7,1); 
+         
         rightPlane.rotation = new Vector3(Math.PI/2, Math.PI/2, 0);
     
         const leftPlane = secondPlane.clone('leftPlane');
         leftPlane.position = new Vector3(550, 147, -153);
-        leftPlane.scaling = new Vector3(0.8,0.7,3)
+        
         leftPlane.rotation = new Vector3(Math.PI/2, Math.PI/2, 0);
         
-        const quadrantPlane: Mesh = MeshBuilder.CreatePlane('quadrantPlane', {width: 500, height: 500, sideOrientation: Mesh.DOUBLESIDE});
+        const quadrantPlane: Mesh = MeshBuilder.CreateBox('quadrantPlane', {width: 500, height: 500, depth: 10});
         quadrantPlane.position = new Vector3(200, 147, -450);
         quadrantPlane.rotation = new Vector3(Math.PI/2, Math.PI/2, 0);
-        quadrantPlane.material = createColorMaterial(scene).roomColor;
+        
     
         
         const secondSection: any = Mesh.MergeMeshes([ secondPlane, quadrantPlane, rightPlane, leftPlane])
-        secondSection.scaling = new Vector3(1.16,1,1.27)
-        secondSection.position = new Vector3(0,200.51,-84)
-
+        secondSection.scaling = new Vector3(1.30,1,1.17)
+        secondSection.position = new Vector3(0,200.51,-130.789)
+        secondSection.material = createColorMaterial(scene).stairColor;
         //COLLISION MESHES
         const collPlane: Mesh = MeshBuilder.CreatePlane('collisionplane',{width: 1550, height: 600});
         collPlane.position = new Vector3(0, 300, -1032.14);
         collPlane.rotation = new Vector3(0, Math.PI/1, 0)
-        //collPlane.isVisible = false;
+        collPlane.isVisible = false;
         collPlane.showBoundingBox = true;
 
         const collPlane2 = collPlane.clone('collisionplane2');
@@ -149,7 +147,7 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         collPlaneLong.position = new Vector3(-700.708, 300, 0);
         collPlaneLong.rotation = new Vector3(0, -Math.PI/2, 0);
         collPlaneLong.showBoundingBox = true;
-
+        collPlaneLong.isVisible = false;
         const collPlaneLong2 = collPlaneLong.clone('collisionLong2');
         collPlaneLong2.position = new Vector3(743.708, 300, 0);
         collPlaneLong2.rotation = new Vector3(0, Math.PI/2, 0);
@@ -159,18 +157,16 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         collStairs.position = new Vector3(-293.46, 119.26, -298.51);
         collStairs.rotation = new Vector3(Math.PI/3.3, -Math.PI/1, -Math.PI/2)
         collStairs.showBoundingBox = true;
-
+        collStairs.isVisible = false;
 
          // // //GRAVITY and COLLISION
       
-        
+        // let collArr = [ground, collStairs, collPlane, collPlane2, collPlaneLong, collPlaneLong2, secondPlane, secondSection];
+
+        // for (let i in collArr){
+        //     collArr[i].checkCollisions = true;
+        // }
        
-        ground.checkCollisions = true;
-        collStairs.checkCollisions = true;
-        collPlaneLong.checkCollisions = true;
-        collPlaneLong2.checkCollisions = true;
-        collPlane.checkCollisions = true;
-        collPlane2.checkCollisions = true;
 
     return scene;
     };
