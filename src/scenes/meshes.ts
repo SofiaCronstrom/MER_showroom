@@ -8,6 +8,7 @@ import { Engine,
     Color4, 
     Mesh,
     MeshBuilder,
+    Texture,
  } from "@babylonjs/core";
 
 
@@ -18,61 +19,63 @@ import "@babylonjs/core/Loading/loadingScreen";
 import "@babylonjs/loaders/glTF";
 
 // digital assets
-import wallModel from "../../assets/glb/museum-walls.glb";
-import roofModel from "../../assets/glb/museum-roof.glb"
+import wallModel from "../../assets/museum-walls.glb";
+import roofModel from "../../assets/museum-roof.glb"
+import Concrete from '../../assets/texture1.jpg'
 
 export const MeshesInMainRoom = async (scene: Scene) => {
  
 
         const ground: Mesh = MeshBuilder.CreateGround("ground", {height: 800, width: 800, subdivisions: 4}, scene);
-        ground.position = new Vector3(1.25, 0.25, -5.28);
+        ground.position = new Vector3(1.25, 1, -5.28);
         ground.scaling = new Vector3(1.984, 1, 2.708);
         ground.material = createColorMaterial(scene).roomColor;
 
 
-        // //ROOM MODEL
-        // const importResult = await SceneLoader.ImportMeshAsync(
-        //     "",
-        //     "",
-        //     wallModel,
-        //     scene,
-        //     undefined,
-        //     ".glb"
-        // );
+        //ROOM MODEL
+        const importResult = await SceneLoader.ImportMeshAsync(
+            "",
+            "",
+            wallModel,
+            scene,
+            undefined,
+            ".glb"
+        );
       
-        // //scaling and adding material
-        // importResult.meshes[0].scaling = new Vector3(1.5,1.28,1.38)
-        // importResult.meshes[1].material = createColorMaterial(scene).roomColor;
+        //scaling and adding material
+        importResult.meshes[0].scaling = new Vector3(1.5,1.28,1.38)
+        importResult.meshes[1].material = createColorMaterial(scene).roomColor;
 
 
-        // //ROOF MODEL
-        // const importResult2 = await SceneLoader.ImportMeshAsync(
-        //     "",
-        //     "",
-        //     roofModel,
-        //     scene,
-        //     undefined,
-        //     ".glb"
-        // );
+        //ROOF MODEL
+        const importResult2 = await SceneLoader.ImportMeshAsync(
+            "",
+            "",
+            roofModel,
+            scene,
+            undefined,
+            ".glb"
+        );
         
-        // // //adding material ang changing scale of roofmodel
-        // importResult2.meshes[0].scaling = new Vector3(1.5,1.28,1.38);
-        // importResult2.meshes[1].material = createColorMaterial(scene).roomColor;
+        // //adding material ang changing scale of roofmodel
+        importResult2.meshes[0].scaling = new Vector3(1.5,1.28,1.38);
+        importResult2.meshes[1].material = createColorMaterial(scene).roomColor;
         
 
 
          //STAIR MESHES
          const stairPlane: Mesh = MeshBuilder.CreateBox('stair1', {width: 200, height: 30, depth: 5}, scene); 
          stairPlane.position =  new Vector3 (-300, 130, -522.5);
-         stairPlane.material = createColorMaterial(scene).roomColor;
+         
  
          const stairInstance: Mesh = MeshBuilder.CreateBox('stair2', {width: 300, height: 50, depth: 10 }, scene); 
-        stairInstance.rotation = new Vector3(Math.PI/2, 0, 0);
+         stairInstance.rotation = new Vector3(Math.PI/2, 0, 0);
          stairInstance.position = new Vector3 (-300, 110, -500);
-         stairInstance.material = createColorMaterial(scene).windowColor;
+        
  
          const stairs: any = Mesh.MergeMeshes([stairPlane, stairInstance]);
          stairs.position = new Vector3(0, -117.64, 224.57);
+         stairs.material = createColorMaterial(scene).stairColor
 
         //Position stair meshes (Refactor this part)
         let stairsArray = [];
@@ -129,8 +132,8 @@ export const MeshesInMainRoom = async (scene: Scene) => {
     
         
         const secondSection: any = Mesh.MergeMeshes([ secondPlane, quadrantPlane, rightPlane, leftPlane])
-        secondSection.scaling = new Vector3(1.30,1,1.17)
-        secondSection.position = new Vector3(0,200.51,-130.789)
+        secondSection.scaling = new Vector3(1.30,1,1.32)
+        secondSection.position = new Vector3(0,200.51,-56.92)
         secondSection.material = createColorMaterial(scene).stairColor;
         //COLLISION MESHES
         const collPlane: Mesh = MeshBuilder.CreatePlane('collisionplane',{width: 1550, height: 600});
@@ -161,11 +164,11 @@ export const MeshesInMainRoom = async (scene: Scene) => {
 
          // // //GRAVITY and COLLISION
       
-        // let collArr = [ground, collStairs, collPlane, collPlane2, collPlaneLong, collPlaneLong2, secondPlane, secondSection];
+        let collArr = [ground, collStairs, collPlane, collPlane2, collPlaneLong, collPlaneLong2, secondSection];
 
-        // for (let i in collArr){
-        //     collArr[i].checkCollisions = true;
-        // }
+        for (let i in collArr){
+            collArr[i].checkCollisions = true;
+        }
        
 
     return scene;
