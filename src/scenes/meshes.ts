@@ -9,6 +9,8 @@ import { Engine,
     Mesh,
     MeshBuilder,
     Texture,
+    DirectionalLight,
+    ShadowGenerator
  } from "@babylonjs/core";
 
 
@@ -47,19 +49,19 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         importResult.meshes[1].material = createColorMaterial(scene).roomColor;
 
 
-        //ROOF MODEL
-        const importResult2 = await SceneLoader.ImportMeshAsync(
-            "",
-            "",
-            roofModel,
-            scene,
-            undefined,
-            ".glb"
-        );
+        // //ROOF MODEL
+        // const importResult2 = await SceneLoader.ImportMeshAsync(
+        //     "",
+        //     "",
+        //     roofModel,
+        //     scene,
+        //     undefined,
+        //     ".glb"
+        // );
         
-        // //adding material ang changing scale of roofmodel
-        importResult2.meshes[0].scaling = new Vector3(1.5,1.28,1.38);
-        importResult2.meshes[1].material = createColorMaterial(scene).roomColor;
+        // // //adding material ang changing scale of roofmodel
+        // importResult2.meshes[0].scaling = new Vector3(1.5,1.28,1.38);
+        // importResult2.meshes[1].material = createColorMaterial(scene).roomColor;
         
 
 
@@ -162,6 +164,17 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         collStairs.showBoundingBox = true;
         collStairs.isVisible = false;
 
+        const light4 = new DirectionalLight("light4", new Vector3(90, -255.62, -837.11),
+        scene);
+        light4.direction = new Vector3(0.08, -0.82, -0.57)
+        light4.intensity = 0.05
+         
+
+
+        const shadow: any = new ShadowGenerator(1024, light4);
+        shadow.getShadowMap().renderList.push(secondSection, stairs, windowLeft);
+        ground.receiveShadows = true;
+        
          // // //GRAVITY and COLLISION
       
         let collArr = [ground, collStairs, collPlane, collPlane2, collPlaneLong, collPlaneLong2, secondSection];
