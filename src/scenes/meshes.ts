@@ -49,19 +49,19 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         importResult.meshes[1].material = createColorMaterial(scene).roomColor;
 
 
-        // //ROOF MODEL
-        // const importResult2 = await SceneLoader.ImportMeshAsync(
-        //     "",
-        //     "",
-        //     roofModel,
-        //     scene,
-        //     undefined,
-        //     ".glb"
-        // );
+        //ROOF MODEL
+        const importResult2 = await SceneLoader.ImportMeshAsync(
+            "",
+            "",
+            roofModel,
+            scene,
+            undefined,
+            ".glb"
+        );
         
-        // // //adding material ang changing scale of roofmodel
-        // importResult2.meshes[0].scaling = new Vector3(1.5,1.28,1.38);
-        // importResult2.meshes[1].material = createColorMaterial(scene).roomColor;
+        // //adding material ang changing scale of roofmodel
+        importResult2.meshes[0].scaling = new Vector3(1.5,1.28,1.38);
+        importResult2.meshes[1].material = createColorMaterial(scene).roomColor;
         
 
 
@@ -137,54 +137,24 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         secondSection.scaling = new Vector3(1.30,1,1.32)
         secondSection.position = new Vector3(0,200.51,-56.92)
         secondSection.material = createColorMaterial(scene).stairColor;
-        //COLLISION MESHES
-        const collPlane: Mesh = MeshBuilder.CreatePlane('collisionplane',{width: 1550, height: 600});
-        collPlane.position = new Vector3(0, 300, -1032.14);
-        collPlane.rotation = new Vector3(0, Math.PI/1, 0)
-        collPlane.isVisible = false;
-        collPlane.showBoundingBox = true;
 
-        const collPlane2 = collPlane.clone('collisionplane2');
-        collPlane2.position = new Vector3(0, 300, 1032.14);
-        collPlane2.rotation = new Vector3(0,0,Math.PI/1)
 
-        const collPlaneLong: Mesh = MeshBuilder.CreatePlane('collisionLong', {width: 2100, height: 600});
-        collPlaneLong.position = new Vector3(-700.708, 300, 0);
-        collPlaneLong.rotation = new Vector3(0, -Math.PI/2, 0);
-        collPlaneLong.showBoundingBox = true;
-        collPlaneLong.isVisible = false;
-        const collPlaneLong2 = collPlaneLong.clone('collisionLong2');
-        collPlaneLong2.position = new Vector3(743.708, 300, 0);
-        collPlaneLong2.rotation = new Vector3(0, Math.PI/2, 0);
-        collPlaneLong2.showBoundingBox = true;
-
-        const collStairs: Mesh = MeshBuilder.CreatePlane('collisionStairs', {width: 800, height: 300});
-        collStairs.position = new Vector3(-293.46, 119.26, -298.51);
-        collStairs.rotation = new Vector3(Math.PI/3.3, -Math.PI/1, -Math.PI/2)
-        collStairs.showBoundingBox = true;
-        collStairs.isVisible = false;
 
         const light4 = new DirectionalLight("light4", new Vector3(90, -255.62, -837.11),
         scene);
         light4.direction = new Vector3(0.08, -0.82, -0.57)
         light4.intensity = 0.05
          
-
-
         const shadow: any = new ShadowGenerator(1024, light4);
         shadow.getShadowMap().renderList.push(secondSection, stairs, windowLeft);
         ground.receiveShadows = true;
         
-         // // //GRAVITY and COLLISION
-      
-        let collArr = [ground, collStairs, collPlane, collPlane2, collPlaneLong, collPlaneLong2, secondSection];
+        
 
-        for (let i in collArr){
-            collArr[i].checkCollisions = true;
-        }
-       
-
-    return scene;
+    return {
+        ground,
+        secondSection
+    }
     };
 
 
