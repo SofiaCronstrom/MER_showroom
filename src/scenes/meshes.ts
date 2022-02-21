@@ -15,7 +15,7 @@ import { Engine,
 
 
 import { createColorMaterial } from "../material";
-
+import { CollisionMeshes } from "./collision";
 // required imports
 import "@babylonjs/core/Loading/loadingScreen";
 import "@babylonjs/loaders/glTF";
@@ -23,13 +23,13 @@ import "@babylonjs/loaders/glTF";
 // digital assets
 import wallModel from "../../assets/museum-walls.glb";
 import roofModel from "../../assets/museum-roof.glb"
-import Concrete from '../../assets/texture1.jpg'
+
 
 export const MeshesInMainRoom = async (scene: Scene) => {
  
 
         const ground: Mesh = MeshBuilder.CreateGround("ground", {height: 800, width: 800, subdivisions: 4}, scene);
-        ground.position = new Vector3(1.25, 1, -5.28);
+        ground.position = new Vector3(1.25, -26.58, -5.28);
         ground.scaling = new Vector3(1.984, 1, 2.708);
         ground.material = createColorMaterial(scene).roomColor;
 
@@ -45,9 +45,9 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         );
       
         //scaling and adding material
-        importResult.meshes[0].scaling = new Vector3(1.5,1.28,1.38)
+        importResult.meshes[0].scaling = new Vector3(1.6,1.28,1.7)
         importResult.meshes[1].material = createColorMaterial(scene).roomColor;
-
+        importResult.meshes[0].position = new Vector3(0,-47.2,233.42)
 
         //ROOF MODEL
         const importResult2 = await SceneLoader.ImportMeshAsync(
@@ -60,10 +60,10 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         );
         
         // //adding material ang changing scale of roofmodel
-        importResult2.meshes[0].scaling = new Vector3(1.5,1.28,1.38);
+        importResult2.meshes[0].scaling = new Vector3(1.6,1.28,1.7);
         importResult2.meshes[1].material = createColorMaterial(scene).roomColor;
-        
-
+        importResult2.meshes[0].position = new Vector3(0,0,233.42)
+        importResult2.meshes[1].position = new Vector3(0,836.08,0)
 
          //STAIR MESHES
          const stairPlane: Mesh = MeshBuilder.CreateBox('stair1', {width: 200, height: 30, depth: 5}, scene); 
@@ -101,13 +101,13 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         }
 
          //WINDOW MESHES
-         const windowLeft: Mesh = MeshBuilder.CreatePlane('windowLeft', {width: 1700, height: 300, sideOrientation: Mesh.DOUBLESIDE}); 
+         const windowLeft: Mesh = MeshBuilder.CreatePlane('windowLeft', {width: 1900, height: 300, sideOrientation: Mesh.DOUBLESIDE}); 
          windowLeft.rotation = new Vector3(0, Math.PI/2, 0);
-         windowLeft.position = new Vector3(765.97, 566.026, 99.25)
+         windowLeft.position = new Vector3(825.79, 533.6, 218.61)
          windowLeft.material = createColorMaterial(scene).windowColor;
  
          const windowRight = windowLeft.createInstance('windowRight');
-         windowRight.position = new Vector3(-765.97, 566.026, 99.25);
+         windowRight.position = new Vector3(-825.79, 533.6, 218.61);
          windowRight.rotation = new Vector3(0, -Math.PI/2, 0);
 
 
@@ -146,15 +146,20 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         light4.intensity = 0.05
          
         const shadow: any = new ShadowGenerator(1024, light4);
-        shadow.getShadowMap().renderList.push(secondSection, stairs, windowLeft);
+        shadow.getShadowMap().renderList.push(secondSection, stairs);
         ground.receiveShadows = true;
         
-        
+    
+    
+    // // //GRAVITY and COLLISION
+   
+        let collArr =  [ground, secondSection];
 
-    return {
-        ground,
-        secondSection
-    }
+        for (let i in collArr){
+            collArr[i].checkCollisions = true;
+        }     
+
+    return scene;
     };
 
 
