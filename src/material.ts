@@ -16,7 +16,7 @@ export const createColorMaterial = (scene: Scene) => {
    //stairColor.ambientTexture = new Texture(concrete, scene)
 
    const windowColor = new StandardMaterial('stairColor', scene);
-   windowColor.emissiveColor = new Color3(1, 1, 1);
+   windowColor.emissiveColor = new Color3(0.972, 0.980, 0.988);
 
  
     return {

@@ -37,7 +37,7 @@ import {
      collStairs.showBoundingBox = true;
      collStairs.isVisible = false;
 
-    let collArr = [collPlane, collPlane2, collPlaneLong, collPlaneLong2]
+    let collArr = [collPlane, collPlane2, collPlaneLong, collPlaneLong2, collStairs]
 
     for (let i in collArr){
         collArr[i].checkCollisions = true;
