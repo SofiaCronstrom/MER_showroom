@@ -76,19 +76,19 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         
  
          const stairs: any = Mesh.MergeMeshes([stairPlane, stairInstance]);
-         stairs.position = new Vector3(0, -117.64, 224.57);
+         stairs.position = new Vector3(0, -117.64, 151.25);
          stairs.material = createColorMaterial(scene).stairColor
 
         //Position stair meshes (Refactor this part)
         let stairsArray = [];
-        stairsArray.push([1, 0, 202.36, -135.43]);
-        stairsArray.push([1, 0, 162.36, -90.43]);
-        stairsArray.push([1, 0, 122.36, -45.43]);
-        stairsArray.push([1, 0, 82.36, -0.43]);
-        stairsArray.push([1, 0, 42.36, 44.57]);
-        stairsArray.push([1, 0, 2.36, 89.57]);
-        stairsArray.push([1, 0, -37.64, 134.57]);
-        stairsArray.push([1, 0, -77.64, 179.57]);
+        stairsArray.push([1, 0, 202.36, -208.75]);
+        stairsArray.push([1, 0, 162.36, -163.75]);
+        stairsArray.push([1, 0, 122.36, -118.75]);
+        stairsArray.push([1, 0, 82.36, -73.75]);
+        stairsArray.push([1, 0, 42.36, -28.75]);
+        stairsArray.push([1, 0, 2.36, 16.25]);
+        stairsArray.push([1, 0, -37.64, 61.25]);
+        stairsArray.push([1, 0, -77.64, 106.25]);
 
         let stepsArray: any = []
 

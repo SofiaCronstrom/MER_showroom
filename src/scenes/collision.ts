@@ -26,6 +26,7 @@ import {
      collPlaneLong.rotation = new Vector3(0, -Math.PI/2, 0);
      collPlaneLong.showBoundingBox = true;
      collPlaneLong.isVisible = false;
+     
      const collPlaneLong2 = collPlaneLong.clone('collisionLong2');
      collPlaneLong2.position = new Vector3(743.708, 254.98, 218.37);
      collPlaneLong2.rotation = new Vector3(0, Math.PI/2, 0);
