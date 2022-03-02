@@ -4,18 +4,22 @@ import { Engine,
     Vector3,
     FreeCamera, 
     DirectionalLight,
-    PointLight,
     Color3,
     Color4, 
-    ShadowGenerator
  } from "@babylonjs/core";
 
 import { CreateSceneClass } from "../createScene";
 import {MeshesInMainRoom} from './meshes'
 import { CollisionMeshes } from "./collision";
+import { WindowPlanes } from "./windows";
+import { ImportMeshes } from "./importedMesh";
+
+
 // required imports
 import "@babylonjs/core/Loading/loadingScreen";
 import "@babylonjs/loaders/glTF";
+
+
 
 
 
@@ -74,8 +78,10 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
 
         MeshesInMainRoom(scene);
         CollisionMeshes(scene);
+        WindowPlanes(scene);
+        ImportMeshes(scene);
 
-        
+
     return scene;
     };
    

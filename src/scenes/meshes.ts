@@ -15,17 +15,15 @@ import { Engine,
 
 
 import { createColorMaterial } from "../material";
-import { CollisionMeshes } from "./collision";
+
 // required imports
 import "@babylonjs/core/Loading/loadingScreen";
 import "@babylonjs/loaders/glTF";
 
-// digital assets
-import wallModel from "../../assets/museum-walls.glb";
-import roofModel from "../../assets/museum-roof.glb"
 
 
-export const MeshesInMainRoom = async (scene: Scene) => {
+
+export const MeshesInMainRoom =  (scene: Scene) => {
  
 
         const ground: Mesh = MeshBuilder.CreateGround("ground", {height: 1400, width: 800, subdivisions: 4}, scene);
@@ -33,37 +31,6 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         ground.scaling = new Vector3(1.984, 1, 2.708);
         ground.material = createColorMaterial(scene).roomColor;
 
-
-        //ROOM MODEL
-        const importResult = await SceneLoader.ImportMeshAsync(
-            "",
-            "",
-            wallModel,
-            scene,
-            undefined,
-            ".glb"
-        );
-      
-        //scaling and adding material
-        importResult.meshes[0].scaling = new Vector3(1.6,1.28,1.7)
-        importResult.meshes[1].material = createColorMaterial(scene).roomColor;
-        importResult.meshes[0].position = new Vector3(0,-47.2,233.42)
-
-        //ROOF MODEL
-        const importResult2 = await SceneLoader.ImportMeshAsync(
-            "",
-            "",
-            roofModel,
-            scene,
-            undefined,
-            ".glb"
-        );
-        
-        // //adding material ang changing scale of roofmodel
-        importResult2.meshes[0].scaling = new Vector3(1.6,1.28,1.7);
-        importResult2.meshes[1].material = createColorMaterial(scene).roomColor;
-        importResult2.meshes[0].position = new Vector3(0,0,233.42)
-        importResult2.meshes[1].position = new Vector3(0,836.08,0)
 
          //STAIR MESHES
          const stairPlane: Mesh = MeshBuilder.CreateBox('stair1', {width: 200, height: 30, depth: 5}, scene); 
@@ -100,34 +67,10 @@ export const MeshesInMainRoom = async (scene: Scene) => {
             stepsArray[i].position.z = stairsArray[i][3]
         }
 
-         //WINDOW MESHES
-         const windowLeft: Mesh = MeshBuilder.CreatePlane('windowLeft', {width: 1900, height: 300, sideOrientation: Mesh.DOUBLESIDE}); 
-         windowLeft.rotation = new Vector3(0, Math.PI/2, 0);
-         windowLeft.position = new Vector3(825.79, 533.6, 218.61)
-         windowLeft.material = createColorMaterial(scene).windowColor;
- 
-         const windowRight = windowLeft.createInstance('windowRight');
-         windowRight.position = new Vector3(-825.79, 533.6, 218.61);
-         windowRight.rotation = new Vector3(0, -Math.PI/2, 0);
+   
 
-         const roofWindow: Mesh = MeshBuilder.CreatePlane('roofWindow', {width: 720, height: 360, sideOrientation: Mesh.DOUBLESIDE });
-         roofWindow.position = new Vector3(406.56,889.77,231.91);
-         roofWindow.rotation = new Vector3(Math.PI/2.65, -Math.PI/2, -Math.PI/2)
-         roofWindow.material = createColorMaterial(scene).windowColor; 
-         
-         let positionArr: any = [];
 
-         positionArr.push([1,406.56,889.77,692.82]);
-         positionArr.push([1,406.56,889.77,-225.28]);
-         
-         let windowArr: any = []
-         for (let i in positionArr){
-           (positionArr[i][0] === 1) ? windowArr[i] = roofWindow.clone('windowClone' + i) : false;
 
-           windowArr[i].position.x = positionArr[i][1] 
-           windowArr[i].position.y = positionArr[i][2]
-           windowArr[i].position.z = positionArr[i][3]
-         }
 
         //SECOND PLANE MESH
         const secondPlane: Mesh = MeshBuilder.CreateBox('secondPlane', {width: 1300, height: 300, depth: 10}); 
@@ -164,7 +107,7 @@ export const MeshesInMainRoom = async (scene: Scene) => {
         light4.intensity = 0.015
          
         const shadow: any = new ShadowGenerator(1024, light4);
-        shadow.getShadowMap().renderList.push(secondSection, stairs, roofWindow, windowArr[0], windowArr[1]);
+        shadow.getShadowMap().renderList.push(secondSection, stairs, );
         ground.receiveShadows = true;
         
     
