@@ -67,13 +67,29 @@ export const MeshesInMainRoom =  (scene: Scene) => {
             stepsArray[i].position.z = stairsArray[i][3]
         }
 
-   
+        //SECOND PLANE TUBE
+        const box = MeshBuilder.CreateBox("box", {height: 400, width: 20, depth: 20});
+        const box2 = MeshBuilder.CreateBox("box", {height: 400, width: 5, depth: 30});
+        const box3 = MeshBuilder.CreateBox("box", {height: 400, width: 5, depth: 30});
+        box3.rotation = new Vector3(0, Math.PI/2, 0)
+        box.material = createColorMaterial(scene).stairColor;
+        
+        const mergeBox: any = Mesh.MergeMeshes([box, box2, box3]);
+        mergeBox.position = new Vector3(-542.48, 160.57, 172.24);
 
+        let pelars = [];
 
+        pelars.push([-542.48, 160.57, 172.24]);
+        pelars.push([-542.48, 160.57, 172.24]);
+
+        let pelarsPosition = [];
+        for (let i in pelars){
+            
+        }
 
 
         //SECOND PLANE MESH
-        const secondPlane: Mesh = MeshBuilder.CreateBox('secondPlane', {width: 1300, height: 300, depth: 10}); 
+        const secondPlane: Mesh = MeshBuilder.CreateBox('secondPlane', {width: 1300, height: 300, depth: 20}); 
         secondPlane.position = new Vector3(0, 147, -600)
         secondPlane.rotation = new Vector3(Math.PI/2, 0, 0);
        
@@ -88,7 +104,7 @@ export const MeshesInMainRoom =  (scene: Scene) => {
         
         leftPlane.rotation = new Vector3(Math.PI/2, Math.PI/2, 0);
         
-        const quadrantPlane: Mesh = MeshBuilder.CreateBox('quadrantPlane', {width: 500, height: 500, depth: 10});
+        const quadrantPlane: Mesh = MeshBuilder.CreateBox('quadrantPlane', {width: 500, height: 500, depth: 20});
         quadrantPlane.position = new Vector3(200, 147, -450);
         quadrantPlane.rotation = new Vector3(Math.PI/2, Math.PI/2, 0);
         

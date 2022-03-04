@@ -35,28 +35,28 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         scene.gravity = new Vector3(0, -0.15, 0);
 
         // // This creates and positions a free camera (non-mesh)
-            const camera = new ArcRotateCamera(
-                "camera",
-                0,
-                Math.PI / 3,
-                10,
-                new Vector3(0, 0, 0),
-                scene
-            );
+            // const camera = new ArcRotateCamera(
+            //     "camera",
+            //     0,
+            //     Math.PI / 3,
+            //     10,
+            //     new Vector3(0, 0, 0),
+            //     scene
+            // );
             
             // //FREE CAMERA
-            // const camera = new FreeCamera("FreeCamera", new Vector3(0,0,0), scene);
+            const camera = new FreeCamera("FreeCamera", new Vector3(0,0,0), scene);
             
         // This targets the camera to scene origin
-                camera.setTarget(Vector3.Zero());
-        //         camera.rotation = new Vector3(0,-15,0)
-        //         camera.speed = 6;
-        //         camera.position = new Vector3(741.7, 150,1497.91)
-        //         camera.applyGravity = true;
-        //         camera.ellipsoid = new Vector3(2, 2, 2);
+                // camera.setTarget(Vector3.Zero());
+                camera.rotation = new Vector3(0,-15,0)
+                camera.speed = 6;
+                camera.position = new Vector3(741.7, 150,1497.91)
+                camera.applyGravity = true;
+                camera.ellipsoid = new Vector3(2, 2, 2);
         // // // This attaches the camera to the canvas
-        //         scene.collisionsEnabled = true;
-        //         camera.checkCollisions = true;
+                scene.collisionsEnabled = true;
+                camera.checkCollisions = true;
                 camera.attachControl(canvas, true);
 
         
