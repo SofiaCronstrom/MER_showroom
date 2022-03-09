@@ -98,6 +98,7 @@ export const ImportMeshes = async (scene: Scene) =>{
     importResult4.meshes[0].rotation = new Vector3(0,(60*Math.PI/180),(180*Math.PI)/180)
     importResult4.meshes[0].position = new Vector3(415.11, -25, -662.74)
     
+
     const planeUnderChair: Mesh = MeshBuilder.CreatePlane('chairPlane', {width: 300, height: 400, sideOrientation: Mesh.DOUBLESIDE})
     planeUnderChair.position = new Vector3(418, -25.63, -794);
     planeUnderChair.rotation = new Vector3(-90*Math.PI/180, -27.82*Math.PI/180, 0)
@@ -112,6 +113,8 @@ export const ImportMeshes = async (scene: Scene) =>{
         const shadow: any = new ShadowGenerator(1024, light3);
         for (let i = 0; i<importResult4.meshes.length; i++){
             shadow.getShadowMap().renderList.push(importResult4.meshes[i]);
+            importResult4.meshes[i].material = createColorMaterial(scene).chairColor;
+            
         }
         planeUnderChair.receiveShadows = true;
     return scene;

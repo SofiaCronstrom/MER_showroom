@@ -17,14 +17,16 @@ export const createColorMaterial = (scene: Scene) => {
 
    const windowColor = new StandardMaterial('stairColor', scene);
    windowColor.emissiveColor = new Color3(0.972, 0.980, 0.988);
-
+   
+   const chairColor = new StandardMaterial('chairmaterial', scene);
+   chairColor.emissiveColor = new Color3(0.623, 0.176, 0.301);
  
     return {
             
             roomColor,
             stairColor,
             windowColor,
-            
+            chairColor
             
     };
 }
