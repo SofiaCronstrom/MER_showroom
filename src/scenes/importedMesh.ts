@@ -1,7 +1,11 @@
 import {
     Scene, 
     Vector3,
-    SceneLoader, 
+    SceneLoader,
+    Mesh,
+    DirectionalLight,
+    ShadowGenerator, 
+    MeshBuilder
   
  } from "@babylonjs/core";
 
@@ -12,7 +16,9 @@ import { createColorMaterial } from "../material";
 // digital assets
 import wallModel from "../../assets/museum-walls.glb";
 import roofModel from "../../assets/museum-roof.glb"
-
+import railingModel from '../../assets/railing.glb'
+import chairModel from '../../assets/chairs.glb'
+import { meshUboDeclaration } from "@babylonjs/core/Shaders/ShadersInclude/meshUboDeclaration";
 
 export const ImportMeshes = async (scene: Scene) =>{
        //ROOM MODEL
@@ -46,5 +52,67 @@ export const ImportMeshes = async (scene: Scene) =>{
     importResult2.meshes[0].position = new Vector3(0,0,233.42)
     importResult2.meshes[1].position = new Vector3(0,836.08,0)
 
+
+    const importResult3 = await SceneLoader.ImportMeshAsync(
+        "",
+        "",
+        railingModel,
+        scene,
+        undefined,
+        ".glb" 
+    )
+    
+    importResult3.meshes[0].scaling = new Vector3(2.92, 1,1);
+    importResult3.meshes[1].position = new Vector3(-79.36, -408.2, 356.35)
+    importResult3.meshes[1].material = createColorMaterial(scene).stairColor;
+    
+
+    //cant make instance of mesh
+
+    
+    // let  railingArr = [];
+
+    // railingArr.push([1,0, 147, -600]);
+    // railingArr.push([1,-550, 147, -404])
+    // railingArr.push([1,550, 147, -153])
+
+    // let railingArr2: any = []
+    // for (let i in railingArr){
+    //     (railingArr[i][0] === 1) ? railingArr2[i] = meshInstance.createInstance('railing' + i) : ;
+        
+    //     railingArr2[i].position.x = railingArr[1];
+    //     railingArr2[i].position.y = railingArr[2];
+    //     railingArr2[i].position.z = railingArr[3];
+        
+    // }
+
+    const importResult4 = await SceneLoader.ImportMeshAsync(
+        "",
+        "",
+        chairModel,
+        scene,
+        undefined,
+        ".glb" 
+    )
+    importResult4.meshes[0].scaling = new Vector3(0.22, -0.22,0.22);
+    importResult4.meshes[0].rotation = new Vector3(0,(60*Math.PI/180),(180*Math.PI)/180)
+    importResult4.meshes[0].position = new Vector3(415.11, -25, -662.74)
+    
+    const planeUnderChair: Mesh = MeshBuilder.CreatePlane('chairPlane', {width: 300, height: 400, sideOrientation: Mesh.DOUBLESIDE})
+    planeUnderChair.position = new Vector3(418, -25.63, -794);
+    planeUnderChair.rotation = new Vector3(-90*Math.PI/180, -27.82*Math.PI/180, 0)
+    planeUnderChair.material = createColorMaterial(scene).roomColor;
+
+    const light3 = new DirectionalLight("light3", new Vector3(540, -1794, -1329),
+        scene);
+
+        light3.direction = new Vector3(0.32, -0.55, -0.77)
+        light3.intensity = 0.2
+
+        const shadow: any = new ShadowGenerator(1024, light3);
+        for (let i = 0; i<importResult4.meshes.length; i++){
+            shadow.getShadowMap().renderList.push(importResult4.meshes[i]);
+        }
+        planeUnderChair.receiveShadows = true;
     return scene;
 }

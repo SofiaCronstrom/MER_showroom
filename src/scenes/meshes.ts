@@ -101,10 +101,13 @@ export const MeshesInMainRoom =  (scene: Scene) => {
         const light4 = new DirectionalLight("light4", new Vector3(-435, -1794, -1465),
         scene);
         light4.direction = new Vector3(-0.14, -0.98, 0.1)
-        light4.intensity = 0.015
+        light4.intensity = 0.055
          
         const shadow: any = new ShadowGenerator(1024, light4);
-        shadow.getShadowMap().renderList.push(secondSection, stairs, );
+        
+        for (let i=0; i<stepsArray.length; i++){
+            shadow.getShadowMap().renderList.push(secondSection, stepsArray[i]);
+        }
         ground.receiveShadows = true;
         
     

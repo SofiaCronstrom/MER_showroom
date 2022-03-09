@@ -70,10 +70,10 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         const light2: DirectionalLight = new DirectionalLight("light2", new Vector3(-540, -1794, 1329), scene)
         light2.direction = new Vector3(-0.13, 0, 0.99);
         light2.intensity = 0.2
-        const light3 = new DirectionalLight("light3", new Vector3(540, -1794, -1329),
-        scene);
-        light3.direction = new Vector3(0.32, -0.55, -0.77)
-        light3.intensity = 0.2
+        // const light3 = new DirectionalLight("light3", new Vector3(540, -1794, -1329),
+        // scene);
+        // light3.direction = new Vector3(0.32, -0.55, -0.77)
+        // light3.intensity = 0.2
         
 
 
