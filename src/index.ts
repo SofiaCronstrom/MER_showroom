@@ -20,9 +20,9 @@ export const babylonInit = async (): Promise<void>  => {
     // Create the scene
     const scene = await createSceneModule.createScene(engine, canvas);
    
-    scene.debugLayer.show({
-        embedMode: true,
-      });
+    // scene.debugLayer.show({
+    //     embedMode: true,
+    //   });
     // Register a render loop to repeatedly render the scene
     engine.runRenderLoop(function () {
         scene.render();
