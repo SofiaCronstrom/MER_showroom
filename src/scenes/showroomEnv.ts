@@ -33,7 +33,7 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         const scene = new Scene(engine);
         scene.clearColor = new Color4(0,0,0);
         scene.ambientColor = new Color3(0.980, 0.976, 0.901);
-        scene.gravity = new Vector3(0, -0.1, 0);
+        scene.gravity = new Vector3(0, 0.015, 0);
 
         // // This creates and positions a free camera (non-mesh)
             // const camera = new ArcRotateCamera(
@@ -54,7 +54,10 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
                 camera.speed = 7;
                 camera.position = new Vector3(741.7, 150,1497.91)
                 camera.applyGravity = true;
-                camera.ellipsoid = new Vector3(2, 2, 2);
+                camera.ellipsoid = new Vector3(2, 4, 2);
+                // camera.inertia=0.2;
+                // camera.angularSensibility=500;
+                // camera.fov=1;
         // // // This attaches the camera to the canvas
                 scene.collisionsEnabled = true;
                 camera.checkCollisions = true;

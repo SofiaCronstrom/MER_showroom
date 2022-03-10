@@ -94,7 +94,7 @@ export const ImportMeshes = async (scene: Scene) =>{
         undefined,
         ".glb" 
     )
-    importResult4.meshes[0].scaling = new Vector3(0.22, -0.22,0.22);
+    importResult4.meshes[0].scaling = new Vector3(0.13, -0.13,0.13);
     importResult4.meshes[0].rotation = new Vector3(0,(60*Math.PI/180),(180*Math.PI)/180)
     importResult4.meshes[0].position = new Vector3(415.11, -25, -662.74)
     
