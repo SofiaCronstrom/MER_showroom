@@ -13,12 +13,13 @@ import {MeshesInMainRoom} from './meshes'
 import { CollisionMeshes } from "./collision";
 import { WindowPlanes } from "./windows";
 import { ImportMeshes } from "./importedMesh";
+import { pillarMeshes } from "./pillars";
 
 
 // required imports
 import "@babylonjs/core/Loading/loadingScreen";
 import "@babylonjs/loaders/glTF";
-import { pillarMeshes } from "./pillars";
+
 
 
 
@@ -33,7 +34,7 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         const scene = new Scene(engine);
         scene.clearColor = new Color4(0,0,0);
         scene.ambientColor = new Color3(0.980, 0.976, 0.901);
-        scene.gravity = new Vector3(0, 0.015, 0);
+        scene.gravity = new Vector3(0, -0.005, 0);
 
         // // This creates and positions a free camera (non-mesh)
             // const camera = new ArcRotateCamera(
@@ -52,9 +53,9 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
                 //camera.setTarget(Vector3.Zero());
                 camera.rotation = new Vector3(0,-15,0)
                 camera.speed = 7;
-                camera.position = new Vector3(741.7, 150,1497.91)
+                camera.position = new Vector3(741.7, 100,1497.91)
                 camera.applyGravity = true;
-                camera.ellipsoid = new Vector3(2, 4, 2);
+                camera.ellipsoid = new Vector3(2, 1, 2);
                 // camera.inertia=0.2;
                 // camera.angularSensibility=500;
                 // camera.fov=1;
@@ -81,6 +82,7 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         WindowPlanes(scene);
         ImportMeshes(scene);
         pillarMeshes(scene);
+        
 
     return scene;
     };

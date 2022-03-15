@@ -19,6 +19,7 @@ import roofModel from "../../assets/museum-roof.glb"
 import railingModel from '../../assets/railing.glb'
 import chairModel from '../../assets/chairs.glb'
 import { meshUboDeclaration } from "@babylonjs/core/Shaders/ShadersInclude/meshUboDeclaration";
+import { modalToggle}  from "./modal";
 
 export const ImportMeshes = async (scene: Scene) =>{
        //ROOM MODEL
@@ -98,18 +99,22 @@ export const ImportMeshes = async (scene: Scene) =>{
     importResult4.meshes[0].rotation = new Vector3(0,(60*Math.PI/180),(180*Math.PI)/180)
     importResult4.meshes[0].position = new Vector3(415.11, -25, -662.74)
     
-
+    
+    //PLANE UNDER IMPORTRESULT4
     const planeUnderChair: Mesh = MeshBuilder.CreatePlane('chairPlane', {width: 300, height: 400, sideOrientation: Mesh.DOUBLESIDE})
     planeUnderChair.position = new Vector3(418, -25.63, -794);
     planeUnderChair.rotation = new Vector3(-90*Math.PI/180, -27.82*Math.PI/180, 0)
     planeUnderChair.material = createColorMaterial(scene).roomColor;
 
+
+    //LIGHT TO CAST SHADOW UNDER IMPORTRESULT4.MESHES
     const light3 = new DirectionalLight("light3", new Vector3(540, -1794, -1329),
         scene);
 
         light3.direction = new Vector3(0.32, -0.55, -0.77)
         light3.intensity = 0.2
-
+        
+    //SHADOW UNDER IMPORTRESULT4
         const shadow: any = new ShadowGenerator(1024, light3);
         for (let i = 0; i<importResult4.meshes.length; i++){
             shadow.getShadowMap().renderList.push(importResult4.meshes[i]);
@@ -117,5 +122,19 @@ export const ImportMeshes = async (scene: Scene) =>{
             
         }
         planeUnderChair.receiveShadows = true;
+    
+    //Check click on importResult4
+    scene.onPointerUp = (evt, pickResult) => {
+        if (pickResult?.hit){
+            if (pickResult?.pickedMesh?.name === "Object019" || pickResult?.pickedMesh?.name === "Object020"){
+             modalToggle();
+            let iframe: any = document.querySelector('#modal-iframe');
+            iframe.innerHTML = "Hello"
+            }
+        }
+    }
+
+
+
     return scene;
 }

@@ -4,9 +4,17 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Babylon.js webpack starter-kit</title>
+  <title>MER Showroom</title>
   <meta name="description" content="A sample project based on Babylon.js, written in typescript, built with webpack">
-  <meta name="author" content="Raanan Weber">
+  <meta name="author" content="Sofia Cronstrom">
+  <div class="modal">
+    <div class="modal-content">
+      <span class="modal-close">x</span>
+      <div id="modal-iframe">
+        <p>Dolor ipsum hello it works! :)</p>
+      </div>
+    </div>
+  </div>
     <style>
       html,
       body {
@@ -22,6 +30,28 @@
         height: 100%;
         touch-action: none;
       }
+      
+      .modal{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scaleX(1.1) scaleY(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    font-family: sans-serif;
+   }
+
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scaleX(1.0) scaleY(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+     
     </style>
   </head>
 
