@@ -6,6 +6,7 @@ import { Engine,
     DirectionalLight,
     Color3,
     Color4, 
+    MeshBuilder
  } from "@babylonjs/core";
 
 import { CreateSceneClass } from "../createScene";
@@ -19,8 +20,8 @@ import { pillarMeshes } from "./pillars";
 // required imports
 import "@babylonjs/core/Loading/loadingScreen";
 import "@babylonjs/loaders/glTF";
-
-
+import {ActionManager} from '@babylonjs/core/Actions/actionManager';
+import {ExecuteCodeAction} from '@babylonjs/core/Actions/directActions';
 
 
 
@@ -75,8 +76,7 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         light2.direction = new Vector3(-0.13, 0, 0.99);
         light2.intensity = 0.2
         
-
-
+       
         MeshesInMainRoom(scene);
         CollisionMeshes(scene);
         WindowPlanes(scene);

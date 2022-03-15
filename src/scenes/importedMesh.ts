@@ -5,8 +5,9 @@ import {
     Mesh,
     DirectionalLight,
     ShadowGenerator, 
-    MeshBuilder
-  
+    MeshBuilder,
+    SceneComponentConstants
+   
  } from "@babylonjs/core";
 
 
@@ -18,8 +19,10 @@ import wallModel from "../../assets/museum-walls.glb";
 import roofModel from "../../assets/museum-roof.glb"
 import railingModel from '../../assets/railing.glb'
 import chairModel from '../../assets/chairs.glb'
-import { meshUboDeclaration } from "@babylonjs/core/Shaders/ShadersInclude/meshUboDeclaration";
+
 import { modalToggle}  from "./modal";
+import {ActionManager} from '@babylonjs/core/Actions/actionManager';
+import {ExecuteCodeAction} from '@babylonjs/core/Actions/directActions';
 
 export const ImportMeshes = async (scene: Scene) =>{
        //ROOM MODEL
@@ -95,6 +98,7 @@ export const ImportMeshes = async (scene: Scene) =>{
         undefined,
         ".glb" 
     )
+   
     importResult4.meshes[0].scaling = new Vector3(0.13, -0.13,0.13);
     importResult4.meshes[0].rotation = new Vector3(0,(60*Math.PI/180),(180*Math.PI)/180)
     importResult4.meshes[0].position = new Vector3(415.11, -25, -662.74)
@@ -113,16 +117,27 @@ export const ImportMeshes = async (scene: Scene) =>{
 
         light3.direction = new Vector3(0.32, -0.55, -0.77)
         light3.intensity = 0.2
-        
+
     //SHADOW UNDER IMPORTRESULT4
         const shadow: any = new ShadowGenerator(1024, light3);
         for (let i = 0; i<importResult4.meshes.length; i++){
             shadow.getShadowMap().renderList.push(importResult4.meshes[i]);
             importResult4.meshes[i].material = createColorMaterial(scene).chairColor;
-            
+
+            importResult4.meshes[i].actionManager = new ActionManager(scene);
+            importResult4.meshes[i].actionManager!.registerAction(new ExecuteCodeAction(ActionManager.OnPointerOverTrigger, function(ev){	
+             scene.hoverCursor = "pointer";
+          }));
         }
         planeUnderChair.receiveShadows = true;
     
+    
+    //hover pointer on importResult4
+ 
+   
+   
+           
+     
     //Check click on importResult4
     scene.onPointerUp = (evt, pickResult) => {
         if (pickResult?.hit){
