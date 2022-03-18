@@ -1,16 +1,14 @@
 import { Engine, 
     Scene, 
-    ArcRotateCamera,
-    Vector3,
-    SceneLoader, 
-    FreeCamera, 
     Color3,
-    Color4, 
+    Vector3,
     Mesh,
     MeshBuilder,
     Texture,
     DirectionalLight,
-    ShadowGenerator
+    ShadowGenerator, 
+    StandardMaterial,
+ 
  } from "@babylonjs/core";
 
 
@@ -20,17 +18,29 @@ import { createColorMaterial } from "../material";
 import "@babylonjs/core/Loading/loadingScreen";
 import "@babylonjs/loaders/glTF";
 
+import normalMap from '../../assets/NormalMap.png'
+import normalMap2 from '../../assets/NormalMap2.png'
+import texture from '../../assets/texture2.jpg'
 
 
 
 export const MeshesInMainRoom =  (scene: Scene) => {
  
-
+        
+        const floorMap: StandardMaterial = new StandardMaterial('floorColor', scene);
+        floorMap.diffuseColor = new Color3(0.906, 0.910, 0.910);
+        floorMap.emissiveColor = new Color3(0.302,0.302,0.302) 
+        floorMap.ambientColor = new Color3(0.286,0.286,0.286)
+        floorMap.specularColor = new Color3(0,0,0)
+        floorMap.diffuseTexture = new Texture(texture, scene);
+        floorMap.bumpTexture = new Texture(normalMap, scene);
+        
         const ground: Mesh = MeshBuilder.CreateGround("ground", {height: 1400, width: 800, subdivisions: 4}, scene);
         ground.position = new Vector3(1.25, -26.58, -5.28);
         ground.scaling = new Vector3(1.984, 1, 2.708);
-        ground.material = createColorMaterial(scene).roomColor;
-
+        ground.material = floorMap;
+        
+       
 
          //STAIR MESHES
          const stairPlane: Mesh = MeshBuilder.CreateBox('stair1', {width: 200, height: 30, depth: 5}, scene); 
@@ -44,7 +54,7 @@ export const MeshesInMainRoom =  (scene: Scene) => {
  
          const stairs: any = Mesh.MergeMeshes([stairPlane, stairInstance]);
          stairs.position = new Vector3(0, -117.64, 151.25);
-         stairs.material = createColorMaterial(scene).stairColor
+         stairs.material = floorMap
 
         //Position stair meshes (Refactor this part)
         let stairsArray = [];
@@ -67,8 +77,11 @@ export const MeshesInMainRoom =  (scene: Scene) => {
             stepsArray[i].position.z = stairsArray[i][3]
         }
 
-
-
+        const videoStand: Mesh = MeshBuilder.CreateBox('videostand', {width: 150, height: 100, depth: 10}, scene )
+        videoStand.position = new Vector3(119, 10,1177)
+        videoStand.rotation = new Vector3(0,61,0)
+        videoStand.material = floorMap;
+        
         //SECOND PLANE MESH
         const secondPlane: Mesh = MeshBuilder.CreateBox('secondPlane', {width: 1300, height: 300, depth: 20}); 
         secondPlane.position = new Vector3(0, 147, -600)
@@ -94,7 +107,7 @@ export const MeshesInMainRoom =  (scene: Scene) => {
         const secondSection: any = Mesh.MergeMeshes([ secondPlane, quadrantPlane, rightPlane, leftPlane])
         secondSection.scaling = new Vector3(1.30,1,1.32)
         secondSection.position = new Vector3(0,200.51,-132.96)
-        secondSection.material = createColorMaterial(scene).stairColor;
+        secondSection.material = floorMap;
 
 
 

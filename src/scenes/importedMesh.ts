@@ -109,7 +109,7 @@ export const ImportMeshes = async (scene: Scene) =>{
     planeUnderChair.position = new Vector3(418, -25.63, -794);
     planeUnderChair.rotation = new Vector3(-90*Math.PI/180, -27.82*Math.PI/180, 0)
     planeUnderChair.material = createColorMaterial(scene).roomColor;
-
+    planeUnderChair.isVisible = false
 
     //LIGHT TO CAST SHADOW UNDER IMPORTRESULT4.MESHES
     const light3 = new DirectionalLight("light3", new Vector3(540, -1794, -1329),
