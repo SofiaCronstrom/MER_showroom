@@ -20,8 +20,7 @@ import { pillarMeshes } from "./pillars";
 // required imports
 import "@babylonjs/core/Loading/loadingScreen";
 import "@babylonjs/loaders/glTF";
-import {ActionManager} from '@babylonjs/core/Actions/actionManager';
-import {ExecuteCodeAction} from '@babylonjs/core/Actions/directActions';
+
 
 
 

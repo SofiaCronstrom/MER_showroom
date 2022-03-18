@@ -13,7 +13,7 @@ module.exports = {
         path: path.resolve("./dist/"),
     },
     resolve: {
-        extensions: [".ts", ".js"],
+        extensions: [".ts", ".js", ".sass"],
         fallback: {
             fs: false,
             path: false, // require.resolve("path-browserify")
@@ -45,6 +45,17 @@ module.exports = {
                             limit: 8192,
                         },
                     },
+                ],
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                  // Creates `style` nodes from JS strings
+                  "style-loader",
+                  // Translates CSS into CommonJS
+                  "css-loader",
+                  // Compiles Sass to CSS
+                  "sass-loader",
                 ],
             },
         ],
