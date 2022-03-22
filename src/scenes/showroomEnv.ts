@@ -81,7 +81,7 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         WindowPlanes(scene);
         ImportMeshes(scene);
         pillarMeshes(scene);
-        Video(scene);
+        //Video(scene);
 
     return scene;
     };

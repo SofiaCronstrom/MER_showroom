@@ -1,7 +1,7 @@
 html,
 body {
   overflow: hidden;
-  width: 100%;
+  width: 99%;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -32,4 +32,49 @@ font-family: sans-serif;
 visibility: visible;
 transform: scaleX(1.0) scaleY(1.0);
 transition: visibility 0s linear 0s, opacity 0s 0s, transform 0.25s;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #E7E2DD;
+  color: #666666;
+  padding: 1rem 1.5rem;
+  width: 60%;
+  height: 60%;
+  border-radius: 0.5rem;
+  z-index: 900 !important;
+}
+.flex{
+  position: relative;
+  width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10%;
+  
+}
+#img{
+  width: 45%;
+  
+}
+
+ #modal-iframe{
+ width: 45%;
+ height: 300px;
+} 
+
+.modal-close {
+  float: right;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: #666666;
+  color: #E7E2DD
 }

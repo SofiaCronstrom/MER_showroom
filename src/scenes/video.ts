@@ -25,6 +25,7 @@ import video from '../../assets/video.mp4';
    //MP4
    const videoTextMat = new StandardMaterial('materialVideo', scene);
    const videoTexture = new VideoTexture('videotexture', video, scene);
+   videoTexture.video.paused;
    
    videoTextMat.diffuseTexture = videoTexture;
    videoTextMat.roughness = 1;
