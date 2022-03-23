@@ -35,7 +35,7 @@ export const pillarMeshes = (scene: Scene) => {
        let pillars: any = [];
 
        pillars.push([1,-542.48, 160.57, -410.26]);
-       pillars.push([1,-37.81, 160.57, -410.26]);
+       pillars.push([1,-37.81, 160.57, -413.26]);
        pillars.push([1,540.63,160.57,-410.26]);
        pillars.push([1,542.5,160.57,503.51]);
        

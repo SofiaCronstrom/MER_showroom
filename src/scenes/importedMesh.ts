@@ -6,7 +6,8 @@ import {
     DirectionalLight,
     ShadowGenerator, 
     MeshBuilder,
-    SceneComponentConstants
+    SceneComponentConstants,
+    PointLight
    
  } from "@babylonjs/core";
 
@@ -144,7 +145,7 @@ export const ImportMeshes = async (scene: Scene) =>{
             if (pickResult?.pickedMesh?.name === "Object019" || pickResult?.pickedMesh?.name === "Object020"){
              modalToggle();
             let iframe: any = document.querySelector('#modal-iframe');
-            iframe.innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tellus felis, volutpat ac nisl id, condimentum auctor nisi. Mauris dui nunc, dignissim ut odio eget, scelerisque vehicula odio. Nunc a lorem leo. Suspendisse sed ex convallis justo pretium ultricies nec nec ex."
+            iframe.innerHTML = "<b>Arper juno</b></p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tellus felis, volutpat ac nisl id, condimentum auctor nisi. Mauris dui nunc, dignissim ut odio eget, scelerisque vehicula odio. Nunc a lorem leo. Suspendisse sed ex convallis justo pretium ultricies nec nec ex. <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tellus felis, volutpat ac nisl id, condimentum auctor nisi. Mauris dui nunc, dignissim ut odio eget, scelerisque vehicula odio."
             }
         }
     }
