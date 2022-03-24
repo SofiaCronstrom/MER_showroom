@@ -76,30 +76,32 @@ export const MeshesInMainRoom =  (scene: Scene) => {
             stepsArray[i].position.y = stairsArray[i][2]
             stepsArray[i].position.z = stairsArray[i][3]
         }
+        
 
+        //VIDEOSTAND
         const videoStand: Mesh = MeshBuilder.CreateBox('videostand', {width: 150, height: 100, depth: 10}, scene )
         videoStand.position = new Vector3(119, 10,1177)
         videoStand.rotation = new Vector3(0,61,0)
         videoStand.material = floorMap;
         
         //SECOND PLANE MESH
-        const secondPlane: Mesh = MeshBuilder.CreateBox('secondPlane', {width: 1300, height: 300, depth: 20}); 
+        const secondPlane: Mesh = MeshBuilder.CreateBox('secondPlane', {width: 800, height: 300, depth: 20}); 
         secondPlane.position = new Vector3(0, 147, -600)
         secondPlane.rotation = new Vector3(Math.PI/2, 0, 0);
        
     
         const rightPlane = secondPlane.clone('rightPlane');
-        rightPlane.position = new Vector3(-550, 147, -404);
-         
+        rightPlane.position = new Vector3(-550, 147, -504);
+        rightPlane.scaling = new Vector3(2,1,1)
         rightPlane.rotation = new Vector3(Math.PI/2, Math.PI/2, 0);
     
         const leftPlane = secondPlane.clone('leftPlane');
-        leftPlane.position = new Vector3(550, 147, -153);
-        
+        leftPlane.position = new Vector3(550, 147, -253);
+        leftPlane.scaling = new Vector3(2,1,1)
         leftPlane.rotation = new Vector3(Math.PI/2, Math.PI/2, 0);
         
-        const quadrantPlane: Mesh = MeshBuilder.CreateBox('quadrantPlane', {width: 500, height: 500, depth: 20});
-        quadrantPlane.position = new Vector3(200, 147, -450);
+        const quadrantPlane: Mesh = MeshBuilder.CreateBox('quadrantPlane', {width: 250, height: 450, depth: 20});
+        quadrantPlane.position = new Vector3(175, 147, -325);
         quadrantPlane.rotation = new Vector3(Math.PI/2, Math.PI/2, 0);
         
     
@@ -119,13 +121,13 @@ export const MeshesInMainRoom =  (scene: Scene) => {
         const shadow: any = new ShadowGenerator(1024, light4);
         
         for (let i=0; i<stepsArray.length; i++){
-            shadow.getShadowMap().renderList.push(secondSection, stepsArray[i]);
+            shadow.getShadowMap().renderList.push( secondSection, stepsArray[i]);
         }
         ground.receiveShadows = true;
         
     
     
-    // // //GRAVITY and COLLISION
+    // //GRAVITY and COLLISION
    
         let collArr =  [ground, secondSection];
 

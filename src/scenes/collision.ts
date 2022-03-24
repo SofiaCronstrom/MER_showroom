@@ -43,19 +43,19 @@ import wood from '../../assets/wood.png'
      woodArray.push([1, 113.683, 142.52,-1032.14]);
      woodArray.push([1, 613.6683, 142.52,-1032.14]);
      woodArray.push([1, 13.683, 142.52,-1032.14]);
-     woodArray.push([1, -13.683, 142.52,-1032.14]);
-     woodArray.push([1, -113.683, 142.52,-1032.14]);
-     woodArray.push([1, -213.683, 142.52,-1032.14]);
-     woodArray.push([1, -313.683, 142.52,-1032.14]);
-     woodArray.push([1, -413.683, 142.52,-1032.14]);
-     woodArray.push([1, -513.683, 142.52,-1032.14]);
-     woodArray.push([1, -613.683, 142.52,-1032.14]);
-     woodArray.push([1, -713.683, 142.52,-1032.14]);
-     woodArray.push([1, -813.683, 142.52,-1032.14]);
+     woodArray.push([1, -86.683, 142.52,-1032.14]);
+     woodArray.push([1, -186.683, 142.52,-1032.14]);
+     woodArray.push([1, -286.683, 142.52,-1032.14]);
+     woodArray.push([1, -386.683, 142.52,-1032.14]);
+     woodArray.push([1, -486.683, 142.52,-1032.14]);
+     woodArray.push([1, -586.683, 142.52,-1032.14]);
+     woodArray.push([1, -686.683, 142.52,-1032.14]);
+     woodArray.push([1, -786.683, 142.52,-1032.14]);
+     woodArray.push([1, -886.683, 142.52,-1032.14]);
      let panelArray: any = []
 
      for (let i in woodArray){
-         (woodArray[i][0] === 1) ? panelArray[i] = collPlaneWood.clone('instanceStairs' + i) : false;
+         (woodArray[i][0] === 1) ? panelArray[i] = collPlaneWood.clone('cloneWood' + i) : false;
          
          panelArray[i].position.x = woodArray[i][1]
          panelArray[i].position.y = woodArray[i][2]
