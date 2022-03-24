@@ -67,7 +67,7 @@ transition: visibility 0s linear 0s, opacity 0s 0s, transform 0.25s;
 }
 
  #modal-iframe{
- align-self: flex-start;
+ 
  width: 45%;
 } 
 

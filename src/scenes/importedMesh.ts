@@ -7,7 +7,10 @@ import {
     ShadowGenerator, 
     MeshBuilder,
     SceneComponentConstants,
-    PointLight
+    PointLight,
+    StandardMaterial,
+    Color3,
+    Texture
    
  } from "@babylonjs/core";
 
@@ -24,6 +27,9 @@ import chairModel from '../../assets/chairs.glb'
 import { modalToggle}  from "./modal";
 import {ActionManager} from '@babylonjs/core/Actions/actionManager';
 import {ExecuteCodeAction} from '@babylonjs/core/Actions/directActions';
+import { CubeTexture } from "babylonjs";
+
+
 
 export const ImportMeshes = async (scene: Scene) =>{
        //ROOM MODEL
@@ -42,54 +48,22 @@ export const ImportMeshes = async (scene: Scene) =>{
     importResult.meshes[0].position = new Vector3(0,-47.2,233.42)
 
     //ROOF MODEL
-    // const importResult2 = await SceneLoader.ImportMeshAsync(
-    //     "",
-    //     "",
-    //     roofModel,
-    //     scene,
-    //     undefined,
-    //     ".glb"
-    // );
-    
-    // //adding material ang changing scale of roofmodel
-    // importResult2.meshes[0].scaling = new Vector3(1.6,1.28,1.7);
-    // importResult2.meshes[1].material = createColorMaterial(scene).roomColor;
-    // importResult2.meshes[0].position = new Vector3(0,0,233.42)
-    // importResult2.meshes[1].position = new Vector3(0,836.08,0)
-
-
-    const importResult3 = await SceneLoader.ImportMeshAsync(
+    const importResult2 = await SceneLoader.ImportMeshAsync(
         "",
         "",
-        railingModel,
+        roofModel,
         scene,
         undefined,
-        ".glb" 
-    )
+        ".glb"
+    );
     
-    importResult3.meshes[0].scaling = new Vector3(2.92, 1,1);
-    importResult3.meshes[1].position = new Vector3(-79.36, -408.2, 356.35)
-    importResult3.meshes[1].material = createColorMaterial(scene).stairColor;
+    //adding material ang changing scale of roofmodel
+    importResult2.meshes[0].scaling = new Vector3(1.6,1.28,1.7);
+    importResult2.meshes[1].material = createColorMaterial(scene).roomColor;
+    importResult2.meshes[0].position = new Vector3(0,0,233.42)
+    importResult2.meshes[1].position = new Vector3(0,836.08,0)
     
 
-    //cant make instance of mesh
-
-    
-    // let  railingArr = [];
-
-    // railingArr.push([1,0, 147, -600]);
-    // railingArr.push([1,-550, 147, -404])
-    // railingArr.push([1,550, 147, -153])
-
-    // let railingArr2: any = []
-    // for (let i in railingArr){
-    //     (railingArr[i][0] === 1) ? railingArr2[i] = meshInstance.createInstance('railing' + i) : ;
-        
-    //     railingArr2[i].position.x = railingArr[1];
-    //     railingArr2[i].position.y = railingArr[2];
-    //     railingArr2[i].position.z = railingArr[3];
-        
-    // }
 
     const importResult4 = await SceneLoader.ImportMeshAsync(
         "",
@@ -113,11 +87,9 @@ export const ImportMeshes = async (scene: Scene) =>{
     planeUnderChair.isVisible = false
 
     //LIGHT TO CAST SHADOW UNDER IMPORTRESULT4.MESHES
-    const light3 = new DirectionalLight("light3", new Vector3(540, -1794, -1329),
-        scene);
-
-        light3.direction = new Vector3(0.32, -0.55, -0.77)
-        light3.intensity = 0.2
+    const light3 = new DirectionalLight("light3", new Vector3(540, -1794, -1329),scene);
+          light3.direction = new Vector3(0.32, -0.55, -0.77)
+          light3.intensity = 0.3
 
     //SHADOW UNDER IMPORTRESULT4
         const shadow: any = new ShadowGenerator(1024, light3);

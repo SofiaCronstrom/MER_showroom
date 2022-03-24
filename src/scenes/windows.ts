@@ -3,18 +3,22 @@ import {
     Vector3,
     Mesh,
     MeshBuilder,
-    
+    StandardMaterial,
+    Color3
  } from "@babylonjs/core";
 
- import { createColorMaterial } from "../material";
+ 
 
  export const WindowPlanes = (scene: Scene) => {
+
+      const windowColor: StandardMaterial = new StandardMaterial('stairColor', scene);
+      windowColor.emissiveColor = new Color3(0.972, 0.980, 0.988);
 
      //WINDOW MESHES
      const windowLeft: Mesh = MeshBuilder.CreatePlane('windowLeft', {width: 1900, height: 300, sideOrientation: Mesh.DOUBLESIDE}); 
      windowLeft.rotation = new Vector3(0, Math.PI/2, 0);
      windowLeft.position = new Vector3(825.79, 533.6, 218.61)
-     windowLeft.material = createColorMaterial(scene).windowColor;
+     windowLeft.material = windowColor;
 
      const windowRight = windowLeft.createInstance('windowRight');
      windowRight.position = new Vector3(-825.79, 533.6, 218.61);
@@ -23,7 +27,7 @@ import {
      const roofWindow: Mesh = MeshBuilder.CreatePlane('roofWindow', {width: 720, height: 360, sideOrientation: Mesh.DOUBLESIDE });
      roofWindow.position = new Vector3(406.56,889.77,231.91);
      roofWindow.rotation = new Vector3(Math.PI/2.65, -Math.PI/2, -Math.PI/2)
-     roofWindow.material = createColorMaterial(scene).windowColor; 
+     roofWindow.material = windowColor; 
      
      let positionArr: any = [];
 

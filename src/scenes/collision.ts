@@ -10,6 +10,9 @@ import {
 
 import wallMap from '../../assets/woodPanel.png'
 import wood from '../../assets/wood.png'
+import wallMap2 from '../../assets/wallMap.png'
+import plaster from '../../assets/texture.jpg'
+
 
  export const CollisionMeshes = (scene: Scene) => {
 
@@ -20,6 +23,14 @@ import wood from '../../assets/wood.png'
     WoodMap.specularColor = new Color3(0,0,0)
     WoodMap.diffuseTexture = new Texture(wood, scene);
     WoodMap.bumpTexture = new Texture(wallMap, scene);
+
+    const plasterMap: StandardMaterial = new StandardMaterial('plaster', scene);
+    plasterMap.diffuseColor = new Color3(0.906, 0.910, 0.910);
+    plasterMap.emissiveColor = new Color3(0.259,0.314,0.306) 
+    plasterMap.ambientColor = new Color3(0.286,0.286,0.286)
+    plasterMap.specularColor = new Color3(0,0,0)
+    plasterMap.diffuseTexture = new Texture(plaster, scene);
+    plasterMap.bumpTexture = new Texture(wallMap2, scene);
   
      //COLLISION MESHES
      const collPlane: Mesh = MeshBuilder.CreatePlane('collisionplane',{width: 1700, height: 600});
@@ -34,33 +45,50 @@ import wood from '../../assets/wood.png'
      collPlaneWood.isVisible = true;
      collPlaneWood.material = WoodMap;
 
-     let woodArray = [];
-     woodArray.push([1, 813.683, 142.52,-1032.14]);
-     woodArray.push([1, 713.683, 142.52,-1032.14]);
-     woodArray.push([1, 513.683, 142.52,-1032.14]);
-     woodArray.push([1, 313.683, 142.52,-1032.14]);
-     woodArray.push([1, 213.683, 142.52,-1032.14]);
-     woodArray.push([1, 113.683, 142.52,-1032.14]);
-     woodArray.push([1, 613.6683, 142.52,-1032.14]);
-     woodArray.push([1, 13.683, 142.52,-1032.14]);
-     woodArray.push([1, -86.683, 142.52,-1032.14]);
-     woodArray.push([1, -186.683, 142.52,-1032.14]);
-     woodArray.push([1, -286.683, 142.52,-1032.14]);
-     woodArray.push([1, -386.683, 142.52,-1032.14]);
-     woodArray.push([1, -486.683, 142.52,-1032.14]);
-     woodArray.push([1, -586.683, 142.52,-1032.14]);
-     woodArray.push([1, -686.683, 142.52,-1032.14]);
-     woodArray.push([1, -786.683, 142.52,-1032.14]);
-     woodArray.push([1, -886.683, 142.52,-1032.14]);
+     const collPlanePlaster: Mesh = MeshBuilder.CreatePlane('collPlaster', {width: 1000, height: 400});
+     collPlanePlaster.position = new Vector3(-790.693,142.52,-390.585);
+     collPlanePlaster.rotation = new Vector3(0, -Math.PI/2, 0)
+     collPlanePlaster.isVisible = true;
+     collPlanePlaster.material = plasterMap;
+     collPlanePlaster.scaling = new Vector3(1.32,1.15,1)
+     let woodArray: any = [];
+
+     woodArray.push([1, 794.693, 142.52,-502.585, Math.PI/2]);
+     woodArray.push([1, 794.693, 142.52,-602.585, Math.PI/2]);
+     woodArray.push([1, 794.693, 142.52,-702.585, Math.PI/2]);
+     woodArray.push([1, 794.693, 142.52,-802.585, Math.PI/2]);
+     woodArray.push([1, 794.693, 142.52,-902.585, Math.PI/2]);
+     woodArray.push([1, 794.693, 142.52,-1002.585, Math.PI/2]);
+     woodArray.push([1, 794.693, 142.52,-1102.585, Math.PI/2]);
+     woodArray.push([1, 794.693, 142.52,-1202.585, Math.PI/2]);
+
+     woodArray.push([1, 813.683, 142.52,-1032.14, Math.PI/1]);
+     woodArray.push([1, 713.683, 142.52,-1032.14,Math.PI/1]);
+     woodArray.push([1, 513.683, 142.52,-1032.14,Math.PI/1]);
+     woodArray.push([1, 313.683, 142.52,-1032.14,Math.PI/1]);
+     woodArray.push([1, 213.683, 142.52,-1032.14,Math.PI/1]);
+     woodArray.push([1, 113.683, 142.52,-1032.14,Math.PI/1]);
+     woodArray.push([1, 613.6683, 142.52,-1032.14,Math.PI/1]);
+     woodArray.push([1, 13.683, 142.52,-1032.14,Math.PI/1]);
+    
+
+    
+
+
+    
      let panelArray: any = []
 
      for (let i in woodArray){
          (woodArray[i][0] === 1) ? panelArray[i] = collPlaneWood.clone('cloneWood' + i) : false;
+        //  (woodArray[i][4] === 2) ? panelArray[i].rotating = new Vector3(0, Math.PI/3, 0) : false;
+         panelArray[i].position.x = woodArray[i][1];
+         panelArray[i].position.y = woodArray[i][2];
+         panelArray[i].position.z = woodArray[i][3];
+         panelArray[i].rotation.y = woodArray[i][4];
          
-         panelArray[i].position.x = woodArray[i][1]
-         panelArray[i].position.y = woodArray[i][2]
-         panelArray[i].position.z = woodArray[i][3]
      }
+
+
 
      const collPlane2 = collPlane.clone('collisionplane2');
      collPlane2.position = new Vector3(0, 254.764, 1499.907);
@@ -83,7 +111,7 @@ import wood from '../../assets/wood.png'
      collStairs.showBoundingBox = true;
      collStairs.isVisible = false;
 
-    let collArr = [collPlane, collPlane2, collPlaneLong, collPlaneLong2, collStairs]
+    let collArr = [collPlane, collPlane2, collPlaneLong, collPlaneLong2, collStairs, collPlaneWood]
 
     for (let i in collArr){
         collArr[i].checkCollisions = true;

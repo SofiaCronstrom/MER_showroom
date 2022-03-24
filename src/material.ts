@@ -17,20 +17,21 @@ export const createColorMaterial = (scene: Scene) => {
    stairColor.specularColor = new Color3(0.893, 0.903, 0.903)
    
 
-   const windowColor: StandardMaterial = new StandardMaterial('stairColor', scene);
-   windowColor.emissiveColor = new Color3(0.972, 0.980, 0.988);
+  
    
    const chairColor: StandardMaterial = new StandardMaterial('chairmaterial', scene);
    chairColor.emissiveColor = new Color3(0.623, 0.176, 0.301);
+
+
 
    
  
     return {
             
+           
             roomColor,
-            stairColor,
-            windowColor,
             chairColor,
+            
             
     };
 }

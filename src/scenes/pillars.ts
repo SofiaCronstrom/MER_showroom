@@ -23,7 +23,7 @@ export const pillarMeshes = (scene: Scene) => {
        const box2 = MeshBuilder.CreateBox("pillars", {height: 400, width: 5, depth: 30});
        const box3 = MeshBuilder.CreateBox("pillars", {height: 400, width: 5, depth: 30});
        box3.rotation = new Vector3(0, Math.PI/2, 0)
-       box.material = createColorMaterial(scene).stairColor;
+       box.material = createColorMaterial(scene).roomColor;
        
        const mergeBox: any = Mesh.MergeMeshes([box, box2, box3]);
        mergeBox.position = new Vector3(-542.48, 160.57, 172.24);
@@ -35,7 +35,7 @@ export const pillarMeshes = (scene: Scene) => {
        let pillars: any = [];
 
        pillars.push([1,-542.48, 160.57, -410.26]);
-       pillars.push([1,-37.81, 160.57, -413.26]);
+       pillars.push([1,-37.81, 160.57, -425.26]);
        pillars.push([1,540.63,160.57,-410.26]);
        pillars.push([1,542.5,160.57,503.51]);
        

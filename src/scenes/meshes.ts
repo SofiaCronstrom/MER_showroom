@@ -12,16 +12,16 @@ import { Engine,
  } from "@babylonjs/core";
 
 
-import { createColorMaterial } from "../material";
+
 
 // required imports
 import "@babylonjs/core/Loading/loadingScreen";
 import "@babylonjs/loaders/glTF";
 
 import normalMap from '../../assets/NormalMap.png'
-import normalMap2 from '../../assets/NormalMap2.png'
 import texture from '../../assets/texture2.jpg'
-
+import Map from '../../assets/frostedMap.png'
+import frosted from '../../assets/frostedText.png'
 
 
 export const MeshesInMainRoom =  (scene: Scene) => {
@@ -34,6 +34,14 @@ export const MeshesInMainRoom =  (scene: Scene) => {
         floorMap.specularColor = new Color3(0,0,0)
         floorMap.diffuseTexture = new Texture(texture, scene);
         floorMap.bumpTexture = new Texture(normalMap, scene);
+
+        const material: StandardMaterial = new StandardMaterial('floorColor', scene);
+        material.diffuseColor = new Color3(0.906, 0.910, 0.910);
+        material.emissiveColor = new Color3(0.302,0.302,0.302) 
+        material.ambientColor = new Color3(0.286,0.286,0.286)
+        material.specularColor = new Color3(0,0,0)
+        material.diffuseTexture = new Texture(frosted, scene);
+        material.bumpTexture = new Texture(Map, scene);
         
         const ground: Mesh = MeshBuilder.CreateGround("ground", {height: 1400, width: 800, subdivisions: 4}, scene);
         ground.position = new Vector3(1.25, -26.58, -5.28);
@@ -83,7 +91,11 @@ export const MeshesInMainRoom =  (scene: Scene) => {
         videoStand.position = new Vector3(119, 10,1177)
         videoStand.rotation = new Vector3(0,61,0)
         videoStand.material = floorMap;
-        
+
+        //RAILING
+        const railing: Mesh = MeshBuilder.CreateBox('railing', {width:590, height: 100, depth: 5});
+        railing.position = new Vector3(230.99,409.37,-406)
+        railing.material = material;
         //SECOND PLANE MESH
         const secondPlane: Mesh = MeshBuilder.CreateBox('secondPlane', {width: 800, height: 300, depth: 20}); 
         secondPlane.position = new Vector3(0, 147, -600)
