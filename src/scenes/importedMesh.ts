@@ -148,6 +148,9 @@ export const ImportMeshes = async (scene: Scene) =>{
              modalToggle();
             let iframe: any = document.querySelector('#modal-iframe');
             iframe.innerHTML = "<b>Arper juno</b></p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tellus felis, volutpat ac nisl id, condimentum auctor nisi. Mauris dui nunc, dignissim ut odio eget, scelerisque vehicula odio. Nunc a lorem leo. Suspendisse sed ex convallis justo pretium ultricies nec nec ex. <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tellus felis, volutpat ac nisl id, condimentum auctor nisi. Mauris dui nunc, dignissim ut odio eget, scelerisque vehicula odio."
+            } else if (pickResult?.pickedMesh?.name === "andtradition_cloud_ln4"){
+                modalToggle();
+                
             }
         }
     }

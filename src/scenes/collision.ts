@@ -26,7 +26,7 @@ import plaster from '../../assets/texture.jpg'
 
     const plasterMap: StandardMaterial = new StandardMaterial('plaster', scene);
     plasterMap.diffuseColor = new Color3(0.906, 0.910, 0.910);
-    plasterMap.emissiveColor = new Color3(0.259,0.314,0.306) 
+    plasterMap.emissiveColor = new Color3(0.263,0.251,0.22) 
     plasterMap.ambientColor = new Color3(0.286,0.286,0.286)
     plasterMap.specularColor = new Color3(0,0,0)
     plasterMap.diffuseTexture = new Texture(plaster, scene);
@@ -46,11 +46,11 @@ import plaster from '../../assets/texture.jpg'
      collPlaneWood.material = WoodMap;
 
      const collPlanePlaster: Mesh = MeshBuilder.CreatePlane('collPlaster', {width: 1000, height: 400});
-     collPlanePlaster.position = new Vector3(-790.693,142.52,-390.585);
+     collPlanePlaster.position = new Vector3(-790.693,142.52,-208.49);
      collPlanePlaster.rotation = new Vector3(0, -Math.PI/2, 0)
      collPlanePlaster.isVisible = true;
      collPlanePlaster.material = plasterMap;
-     collPlanePlaster.scaling = new Vector3(1.31,1.08,1)
+     collPlanePlaster.scaling = new Vector3(0.58,1.03,1)
      let woodArray: any = [];
 
      woodArray.push([1, 794.693, 142.52,-502.585, Math.PI/2]);
