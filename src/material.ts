@@ -21,7 +21,9 @@ export const createColorMaterial = (scene: Scene) => {
    
    const chairColor: StandardMaterial = new StandardMaterial('chairmaterial', scene);
    chairColor.emissiveColor = new Color3(0.623, 0.176, 0.301);
-
+   
+   const sofaColor: StandardMaterial = new StandardMaterial('sofacolor', scene);
+   sofaColor.emissiveColor = new Color3(0.207, 0.090, 0.470);
 
 
    
@@ -31,7 +33,7 @@ export const createColorMaterial = (scene: Scene) => {
            
             roomColor,
             chairColor,
-            
+            sofaColor
             
     };
 }

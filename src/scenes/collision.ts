@@ -50,7 +50,7 @@ import plaster from '../../assets/texture.jpg'
      collPlanePlaster.rotation = new Vector3(0, -Math.PI/2, 0)
      collPlanePlaster.isVisible = true;
      collPlanePlaster.material = plasterMap;
-     collPlanePlaster.scaling = new Vector3(1.32,1.15,1)
+     collPlanePlaster.scaling = new Vector3(1.31,1.08,1)
      let woodArray: any = [];
 
      woodArray.push([1, 794.693, 142.52,-502.585, Math.PI/2]);

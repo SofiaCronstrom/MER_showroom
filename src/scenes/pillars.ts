@@ -19,9 +19,9 @@ export const pillarMeshes = (scene: Scene) => {
 
 
        //SECOND PLANE TUBE
-       const box: Mesh = MeshBuilder.CreateBox("pillars", {height: 400, width: 20, depth: 20});
-       const box2 = MeshBuilder.CreateBox("pillars", {height: 400, width: 5, depth: 30});
-       const box3 = MeshBuilder.CreateBox("pillars", {height: 400, width: 5, depth: 30});
+       const box: Mesh = MeshBuilder.CreateBox("pillars", {height: 370, width: 20, depth: 20});
+       const box2 = MeshBuilder.CreateBox("pillars", {height: 370, width: 5, depth: 30});
+       const box3 = MeshBuilder.CreateBox("pillars", {height: 370, width: 5, depth: 30});
        box3.rotation = new Vector3(0, Math.PI/2, 0)
        box.material = createColorMaterial(scene).roomColor;
        

@@ -23,6 +23,8 @@ import wallModel from "../../assets/museum-walls.glb";
 import roofModel from "../../assets/museum-roof.glb"
 import railingModel from '../../assets/railing.glb'
 import chairModel from '../../assets/chairs.glb'
+import sofaModel from '../../assets/sofa.glb'
+
 
 import { modalToggle}  from "./modal";
 import {ActionManager} from '@babylonjs/core/Actions/actionManager';
@@ -77,14 +79,30 @@ export const ImportMeshes = async (scene: Scene) =>{
     importResult4.meshes[0].scaling = new Vector3(0.13, -0.13,0.13);
     importResult4.meshes[0].rotation = new Vector3(0,(60*Math.PI/180),(180*Math.PI)/180)
     importResult4.meshes[0].position = new Vector3(415.11, -25, -662.74)
-    
-    
+
+    const importResult3 = await SceneLoader.ImportMeshAsync(
+        "",
+        "",
+        sofaModel,
+        scene,
+        undefined,
+        ".glb" 
+    )
+    importResult3.meshes[0].scaling = new Vector3(111.32,111.32,111.32);
+    importResult3.meshes[0].rotation = new Vector3((0.27*Math.PI/180),(84.79*Math.PI/180),(-0.2*Math.PI/180));
+    importResult3.meshes[0].position = new Vector3(-540.4,-21.74,-32.07);
+    for (let i in importResult3.meshes){
+      importResult3.meshes[i].material = createColorMaterial(scene).sofaColor;
+    }
     //PLANE UNDER IMPORTRESULT4
     const planeUnderChair: Mesh = MeshBuilder.CreatePlane('chairPlane', {width: 300, height: 400, sideOrientation: Mesh.DOUBLESIDE})
     planeUnderChair.position = new Vector3(418, -25.63, -794);
     planeUnderChair.rotation = new Vector3(-90*Math.PI/180, -27.82*Math.PI/180, 0)
     planeUnderChair.material = createColorMaterial(scene).roomColor;
     planeUnderChair.isVisible = false
+     
+    const planeClone = planeUnderChair.clone('sofaPlane');
+    planeClone.position = new Vector3(-565.949,-25.63,-14.63)
 
     //LIGHT TO CAST SHADOW UNDER IMPORTRESULT4.MESHES
     const light3 = new DirectionalLight("light3", new Vector3(540, -1794, -1329),scene);
@@ -92,6 +110,7 @@ export const ImportMeshes = async (scene: Scene) =>{
           light3.intensity = 0.3
 
     //SHADOW UNDER IMPORTRESULT4
+   
         const shadow: any = new ShadowGenerator(1024, light3);
         for (let i = 0; i<importResult4.meshes.length; i++){
             shadow.getShadowMap().renderList.push(importResult4.meshes[i]);
@@ -102,8 +121,19 @@ export const ImportMeshes = async (scene: Scene) =>{
              scene.hoverCursor = "pointer";
           }));
         }
+
+        for (let i in importResult3.meshes){
+            importResult3.meshes[i].material = createColorMaterial(scene).sofaColor;
+            shadow.getShadowMap().renderList.push(importResult3.meshes[i]);
+
+            importResult3.meshes[i].actionManager = new ActionManager(scene);
+            importResult3.meshes[i].actionManager!.registerAction(new ExecuteCodeAction(ActionManager.OnPointerOverTrigger, function(ev){	
+             scene.hoverCursor = "pointer";
+          }));
+          }
+        
         planeUnderChair.receiveShadows = true;
-    
+        planeClone.receiveShadows = true;
     
     //hover pointer on importResult4
  
