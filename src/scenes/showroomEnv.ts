@@ -35,34 +35,34 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         const scene = new Scene(engine);
         scene.clearColor = new Color4(0,0,0);
         scene.ambientColor = new Color3(0.980, 0.976, 0.901);
-        //scene.gravity = new Vector3(0, -0.02, 0);
+        scene.gravity = new Vector3(0, -0.02, 0);
 
-        // // This creates and positions a free camera (non-mesh)
-            const camera = new ArcRotateCamera(
-                "camera",
-                0,
-                Math.PI / 3,
-                10,
-                new Vector3(0, 0, 0),
-                scene
-            );
+        // // // This creates and positions a free camera (non-mesh)
+        //     const camera = new ArcRotateCamera(
+        //         "camera",
+        //         0,
+        //         Math.PI / 3,
+        //         10,
+        //         new Vector3(0, 0, 0),
+        //         scene
+        //     );
             
             // //FREE CAMERA
-            // const camera = new FreeCamera("FreeCamera", new Vector3(0,0,0), scene);
+            const camera = new FreeCamera("FreeCamera", new Vector3(0,0,0), scene);
             
         // This targets the camera to scene origin
-                camera.setTarget(Vector3.Zero());
-                // camera.rotation = new Vector3(0,-15,0)
-                // camera.speed = 7;
-                // camera.position = new Vector3(741.7, 100,1497.91)
-                // camera.applyGravity = true;
-                // camera.ellipsoid = new Vector3(2, 1, 2);
-                //camera.inertia=0.2;
-                //camera.angularSensibility=500;
-                // camera.fov=1;
+                //camera.setTarget(Vector3.Zero());
+                camera.rotation = new Vector3(0,-15,0)
+                camera.speed = 111;
+                camera.position = new Vector3(741.7, 100,1497.91)
+                camera.applyGravity = true;
+                camera.ellipsoid = new Vector3(2, 4, 2);
+                camera.inertia=0.2;
+                camera.angularSensibility=500;
+                camera.fov=1;
         // // // This attaches the camera to the canvas
-                // scene.collisionsEnabled = true;
-                // camera.checkCollisions = true;
+                scene.collisionsEnabled = true;
+                camera.checkCollisions = true;
                 camera.attachControl(canvas, true);
 
         

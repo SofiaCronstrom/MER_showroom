@@ -5,13 +5,7 @@ import {
     Mesh,
     DirectionalLight,
     ShadowGenerator, 
-    MeshBuilder,
-    SceneComponentConstants,
-    PointLight,
-    StandardMaterial,
-    Color3,
-    Texture
-   
+    MeshBuilder,   
  } from "@babylonjs/core";
 
 
@@ -21,7 +15,6 @@ import { createColorMaterial } from "../material";
 // digital assets
 import wallModel from "../../assets/museum-walls.glb";
 import roofModel from "../../assets/museum-roof.glb"
-import railingModel from '../../assets/railing.glb'
 import chairModel from '../../assets/chairs.glb'
 import sofaModel from '../../assets/sofa.glb'
 
@@ -29,7 +22,7 @@ import sofaModel from '../../assets/sofa.glb'
 import { modalToggle}  from "./modal";
 import {ActionManager} from '@babylonjs/core/Actions/actionManager';
 import {ExecuteCodeAction} from '@babylonjs/core/Actions/directActions';
-import { CubeTexture } from "babylonjs";
+
 
 
 
@@ -49,21 +42,21 @@ export const ImportMeshes = async (scene: Scene) =>{
     importResult.meshes[1].material = createColorMaterial(scene).roomColor;
     importResult.meshes[0].position = new Vector3(0,-47.2,233.42)
 
-    //ROOF MODEL
-    const importResult2 = await SceneLoader.ImportMeshAsync(
-        "",
-        "",
-        roofModel,
-        scene,
-        undefined,
-        ".glb"
-    );
+    // //ROOF MODEL
+    // const importResult2 = await SceneLoader.ImportMeshAsync(
+    //     "",
+    //     "",
+    //     roofModel,
+    //     scene,
+    //     undefined,
+    //     ".glb"
+    // );
     
-    //adding material ang changing scale of roofmodel
-    importResult2.meshes[0].scaling = new Vector3(1.6,1.28,1.7);
-    importResult2.meshes[1].material = createColorMaterial(scene).roomColor;
-    importResult2.meshes[0].position = new Vector3(0,0,233.42)
-    importResult2.meshes[1].position = new Vector3(0,836.08,0)
+    // //adding material ang changing scale of roofmodel
+    // importResult2.meshes[0].scaling = new Vector3(1.6,1.28,1.7);
+    // importResult2.meshes[1].material = createColorMaterial(scene).roomColor;
+    // importResult2.meshes[0].position = new Vector3(0,0,233.42)
+    // importResult2.meshes[1].position = new Vector3(0,836.08,0)
     
 
 
@@ -111,7 +104,7 @@ export const ImportMeshes = async (scene: Scene) =>{
 
     //SHADOW UNDER IMPORTRESULT4
    
-        const shadow: any = new ShadowGenerator(1024, light3);
+        const shadow: any = new ShadowGenerator(1020, light3);
         for (let i = 0; i<importResult4.meshes.length; i++){
             shadow.getShadowMap().renderList.push(importResult4.meshes[i]);
             importResult4.meshes[i].material = createColorMaterial(scene).chairColor;
@@ -135,18 +128,18 @@ export const ImportMeshes = async (scene: Scene) =>{
         planeUnderChair.receiveShadows = true;
         planeClone.receiveShadows = true;
     
-    //hover pointer on importResult4
+   
  
    
    
            
      
     //Check click on importResult4
+    let iframe: any = document.querySelector('#modal-iframe');
     scene.onPointerUp = (evt, pickResult) => {
         if (pickResult?.hit){
             if (pickResult?.pickedMesh?.name === "Object019" || pickResult?.pickedMesh?.name === "Object020"){
              modalToggle();
-            let iframe: any = document.querySelector('#modal-iframe');
             iframe.innerHTML = "<b>Arper juno</b></p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tellus felis, volutpat ac nisl id, condimentum auctor nisi. Mauris dui nunc, dignissim ut odio eget, scelerisque vehicula odio. Nunc a lorem leo. Suspendisse sed ex convallis justo pretium ultricies nec nec ex. <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas tellus felis, volutpat ac nisl id, condimentum auctor nisi. Mauris dui nunc, dignissim ut odio eget, scelerisque vehicula odio."
             } else if (pickResult?.pickedMesh?.name === "andtradition_cloud_ln4"){
                 modalToggle();

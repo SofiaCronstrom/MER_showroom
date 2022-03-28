@@ -5,12 +5,10 @@ import { Engine,
     Mesh,
     MeshBuilder,
     Texture,
-    DirectionalLight,
-    ShadowGenerator, 
     StandardMaterial,
  
  } from "@babylonjs/core";
-import { version } from "webpack";
+
 
 
 import Map from '../../assets/frostedMap.png'
@@ -40,7 +38,7 @@ export const Railing = (scene: Scene) => {
          railing3.position = new Vector3(-661.27,409.3,253.77);
          railing3.scaling = new Vector3(0.46,1,1);
          const railing4 = railing.clone('railingclone4');
-         railing4.position = new Vector3(-525,408.75,-222.49)
+         railing4.position = new Vector3(-525,408.75,-215.1)
          railing4.scaling = new Vector3(1.6,1,1);
          railing4.rotation = new Vector3(0, Math.PI/2, 0);
          const railing5 = railing.clone('railingclone3');

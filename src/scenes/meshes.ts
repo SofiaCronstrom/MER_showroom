@@ -20,8 +20,8 @@ import "@babylonjs/loaders/glTF";
 
 import normalMap from '../../assets/NormalMap.png'
 import texture from '../../assets/texture2.jpg'
-import Map from '../../assets/frostedMap.png'
-import frosted from '../../assets/frostedText.png'
+import { createColorMaterial } from "../material";
+
 
 
 export const MeshesInMainRoom =  (scene: Scene) => {
@@ -108,18 +108,25 @@ export const MeshesInMainRoom =  (scene: Scene) => {
         quadrantPlane.rotation = new Vector3(Math.PI/2, Math.PI/2, 0);
         
     
-        
+        //second section merged
         const secondSection: any = Mesh.MergeMeshes([ secondPlane, quadrantPlane, rightPlane, leftPlane])
         secondSection.scaling = new Vector3(1.30,1,1.32)
         secondSection.position = new Vector3(0,200.51,-132.96)
         secondSection.material = floorMap;
-
+        
+        //Paint stands
+        const paintStand = MeshBuilder.CreateBox('paintstand', {width: 900, height: 5, depth: 15});
+        paintStand.position = new Vector3(0, 500, -1031.34 );
+        paintStand.material = floorMap;
+        const paintStand2 = paintStand.clone('paintstand2');
+        paintStand2.position = new Vector3(-788.64, 117.32, 884.7);
+        paintStand2.rotation = new Vector3(0, Math.PI/2, 0);
 
 
         const light4 = new DirectionalLight("light4", new Vector3(-435, -1794, -1465),
         scene);
-        light4.direction = new Vector3(-0.14, -0.98, 0.1)
-        light4.intensity = 0.055
+        light4.direction = new Vector3(-0.14, -0.98, 0.1);
+        light4.intensity = 0.055;
          
         const shadow: any = new ShadowGenerator(1024, light4);
         

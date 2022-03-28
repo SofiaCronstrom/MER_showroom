@@ -4,26 +4,40 @@ import {
     Vector3,
     Mesh,
     MeshBuilder,
-    
+    Color3,
+    StandardMaterial,
+    Texture
  } from "@babylonjs/core";
  import {ActionManager} from '@babylonjs/core/Actions/actionManager';
  import {ExecuteCodeAction} from '@babylonjs/core/Actions/directActions';
 
- import { createColorMaterial } from "../material";
 
+
+ import wallMap2 from '../../assets/wallMap.png'
+import plaster from '../../assets/texture.jpg'
 
 
 
 
 export const pillarMeshes = (scene: Scene) => {
 
+  const plasterMap: StandardMaterial = new StandardMaterial('plaster', scene);
+  plasterMap.diffuseColor = new Color3(0.906, 0.910, 0.910);
+  plasterMap.emissiveColor = new Color3(0.361, 0.357, 0.353) 
+  plasterMap.ambientColor = new Color3(0.286,0.286,0.286)
+  plasterMap.specularColor = new Color3(0,0,0)
+  plasterMap.diffuseTexture = new Texture(plaster, scene);
+  plasterMap.bumpTexture = new Texture(wallMap2, scene);
+
 
        //SECOND PLANE TUBE
        const box: Mesh = MeshBuilder.CreateBox("pillars", {height: 370, width: 20, depth: 20});
+       box.material = plasterMap;
        const box2 = MeshBuilder.CreateBox("pillars", {height: 370, width: 5, depth: 30});
+       box2.material = plasterMap;
        const box3 = MeshBuilder.CreateBox("pillars", {height: 370, width: 5, depth: 30});
        box3.rotation = new Vector3(0, Math.PI/2, 0)
-       box.material = createColorMaterial(scene).roomColor;
+       box3.material = plasterMap;
        
        const mergeBox: any = Mesh.MergeMeshes([box, box2, box3]);
        mergeBox.position = new Vector3(-542.48, 160.57, 172.24);

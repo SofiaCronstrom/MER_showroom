@@ -24,7 +24,7 @@ import {
      windowRight.position = new Vector3(-825.79, 533.6, 218.61);
      windowRight.rotation = new Vector3(0, -Math.PI/2, 0);
 
-     const roofWindow: Mesh = MeshBuilder.CreatePlane('roofWindow', {width: 720, height: 360, sideOrientation: Mesh.DOUBLESIDE });
+     const roofWindow: Mesh = MeshBuilder.CreatePlane('roofWindow', {width: 730, height: 370, sideOrientation: Mesh.DOUBLESIDE });
      roofWindow.position = new Vector3(406.56,889.77,231.91);
      roofWindow.rotation = new Vector3(Math.PI/2.65, -Math.PI/2, -Math.PI/2)
      roofWindow.material = windowColor; 
