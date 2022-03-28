@@ -17,6 +17,7 @@ import { ImportMeshes } from "./importedMesh";
 import { pillarMeshes } from "./pillars";
 import { Video } from "./video";
 import {Railing} from './railing';
+import {PaintingPlanes} from './paitingPlanes';
 
 // required imports
 import "@babylonjs/core/Loading/loadingScreen";
@@ -84,7 +85,7 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         pillarMeshes(scene);
         //Video(scene);
         Railing(scene);
-
+        PaintingPlanes(scene);
         
     return scene;
     };
