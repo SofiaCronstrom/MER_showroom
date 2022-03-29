@@ -7,12 +7,12 @@
   <title>MER Showroom</title>
   <meta name="description" content="A sample project based on Babylon.js, written in typescript, built with webpack">
   <meta name="author" content="Sofia Cronstrom">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../src/style.css">
   </head>
 
   <body>
-    
-    <style>
+
+<style>
       html,
 body {
   overflow: hidden;
@@ -26,6 +26,74 @@ body {
   width: 100%;
   height: 100%;
   touch-action: none;
+}
+.modal{
+position: fixed;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+
+visibility: hidden;
+transform: scaleX(1.1) scaleY(1.1);
+transition: visibility 0s linear 0.25s, opacity 0s 0s, transform 0.25s;
+font-family: sans-serif;
+}
+
+.show-modal {
+
+visibility: visible;
+transform: scaleX(1.0) scaleY(1.0);
+transition: visibility 0s linear 0s, opacity 0s 0s, transform 0.25s;
+}
+
+.modal-content {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #E7E2DD;
+  color: #666666;
+  padding: 1rem 1.5rem;
+  width: 60%;
+  height: 60%;
+  border-radius: 0.5rem;
+  z-index: 900 !important;
+}
+.flex{
+  position: absolute;
+  margin: 0 auto;
+  width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10%;
+  top: 50%;
+  left: 10%;
+  transform: translate(0, -50%);
+}
+#img{
+  width: 45%;
+  
+}
+
+ #modal-iframe{
+ 
+ width: 45%;
+} 
+
+.modal-close {
+  float: right;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: #666666;
+  color: #E7E2DD
 }
     </style>
     <div class="modal">
