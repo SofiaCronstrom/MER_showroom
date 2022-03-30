@@ -84,9 +84,7 @@ export const ImportMeshes = async (scene: Scene) =>{
     importResult3.meshes[0].scaling = new Vector3(111.32,111.32,111.32);
     importResult3.meshes[0].rotation = new Vector3((0.27*Math.PI/180),(84.79*Math.PI/180),(-0.2*Math.PI/180));
     importResult3.meshes[0].position = new Vector3(-540.4,-21.74,-32.07);
-    for (let i in importResult3.meshes){
-      importResult3.meshes[i].material = createColorMaterial(scene).sofaColor;
-    }
+    importResult3.meshes[3].material = createColorMaterial(scene).sofaColor;
     //PLANE UNDER IMPORTRESULT4
     const planeUnderChair: Mesh = MeshBuilder.CreatePlane('chairPlane', {width: 300, height: 400, sideOrientation: Mesh.DOUBLESIDE})
     planeUnderChair.position = new Vector3(418, -25.63, -794);
@@ -116,7 +114,6 @@ export const ImportMeshes = async (scene: Scene) =>{
         }
 
         for (let i in importResult3.meshes){
-            importResult3.meshes[i].material = createColorMaterial(scene).sofaColor;
             shadow.getShadowMap().renderList.push(importResult3.meshes[i]);
 
             importResult3.meshes[i].actionManager = new ActionManager(scene);

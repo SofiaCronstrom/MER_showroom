@@ -85,7 +85,13 @@ export const MeshesInMainRoom =  (scene: Scene) => {
         videoStand.position = new Vector3(119, 10,1177)
         videoStand.rotation = new Vector3(0,61,0)
         videoStand.material = floorMap;
+        
 
+        //PODIUM
+        const podium: Mesh = MeshBuilder.CreateBox('podium', {width: 50, height: 50, depth: 50});
+        podium.position.x = 576.43;
+        podium.position.z = 120.63;
+        podium.material = floorMap;
        
         //SECOND PLANE MESH
         const secondPlane: Mesh = MeshBuilder.CreateBox('secondPlane', {width: 800, height: 300, depth: 20}); 

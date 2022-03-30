@@ -1,6 +1,11 @@
-import { StandardMaterial, Scene, Color3, Texture, PBRMetallicRoughnessMaterial } from "@babylonjs/core";
+import { StandardMaterial,
+         Scene, 
+         Color3, 
+         Texture, 
+         PBRMetallicRoughnessMaterial } from "@babylonjs/core";
 
-
+import leather from '../assets/leather.jpg'
+import leatherMap from '../assets/leatherMap.png'
 export const createColorMaterial = (scene: Scene) => {
 
     const roomColor: StandardMaterial = new StandardMaterial('roomColor', scene);
@@ -14,8 +19,10 @@ export const createColorMaterial = (scene: Scene) => {
    chairColor.emissiveColor = new Color3(0.623, 0.176, 0.301);
    
    const sofaColor: StandardMaterial = new StandardMaterial('sofacolor', scene);
-   sofaColor.emissiveColor = new Color3(0.207, 0.090, 0.470);
-   sofaColor.diffuseColor = new Color3(0.4,0.4,0.4)
+   sofaColor.diffuseColor = new Color3(0.906, 0.910, 0.910);
+    sofaColor.emissiveColor = new Color3(0.902,0.902,0.902);
+    sofaColor.diffuseTexture = new Texture(leather, scene);
+    sofaColor.bumpTexture = new Texture(leatherMap, scene);
 
    
  
