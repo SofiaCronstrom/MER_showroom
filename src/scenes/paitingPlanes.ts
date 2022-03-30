@@ -20,6 +20,13 @@ import { meshUboDeclaration } from "@babylonjs/core/Shaders/ShadersInclude/meshU
 import bar from '../../assets/painting-img/bar.jpg'
 import glasses from '../../assets/painting-img/glasses.jpg'
 import office from '../../assets/painting-img/office.jpg'
+import yellow from '../../assets/yellow.png'
+import yellowMap from '../../assets/YellowMap.png'
+import green from '../../assets/green.png'
+import greenMap from '../../assets/greenMap.png'
+import stick from '../../assets/stick.png'
+import stickMap from '../../assets/stickMap.png'
+
 
 export const PaintingPlanes = (scene: Scene) => {
 
@@ -69,6 +76,35 @@ export const PaintingPlanes = (scene: Scene) => {
    img3.emissiveColor = new Color3(1, 1, 1);
    img3.diffuseTexture = new Texture(office, scene);
    paintings.material = img3;
+
+   const img4 = new StandardMaterial('img4', scene);
+   img4.diffuseColor = new Color3(0.906, 0.910, 0.910);
+   img4.emissiveColor = new Color3(0.98,0.98,0.98) 
+   img4.ambientColor = new Color3(0.286,0.286,0.286)
+   img4.specularColor = new Color3(0,0,0)
+   img4.diffuseTexture = new Texture(yellow, scene);
+   img4.bumpTexture = new Texture(yellowMap, scene);
+   paintingArr[2].material = img4;
+
+   const img5 = new StandardMaterial('img4', scene);
+   img5.diffuseColor = new Color3(0.906, 0.910, 0.910);
+   img5.emissiveColor = new Color3(0.98,0.98,0.98);
+   img5.ambientColor = new Color3(0.286,0.286,0.286)
+   img5.specularColor = new Color3(0,0,0)
+   img5.diffuseTexture = new Texture(stick, scene);
+   img5.bumpTexture = new Texture(stickMap, scene);
+   paintingArr[3].material = img5;
+
+   const img6 = new StandardMaterial('img4', scene);
+   img6.diffuseColor = new Color3(0.906, 0.910, 0.910);
+   img6.emissiveColor = new Color3(0.98,0.98,0.98);
+   img6.ambientColor = new Color3(0.286,0.286,0.286)
+   img6.specularColor = new Color3(0,0,0)
+   img6.diffuseTexture = new Texture(green, scene);
+   img6.bumpTexture = new Texture(greenMap, scene);
+   paintingArr[4].material = img6;
+
+
 
     return scene;
 }
