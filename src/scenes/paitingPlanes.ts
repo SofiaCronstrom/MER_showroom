@@ -17,8 +17,9 @@ import { Engine,
 // required imports
 import "@babylonjs/core/Loading/loadingScreen";
 import { meshUboDeclaration } from "@babylonjs/core/Shaders/ShadersInclude/meshUboDeclaration";
-
-
+import bar from '../../assets/painting-img/bar.jpg'
+import glasses from '../../assets/painting-img/glasses.jpg'
+import office from '../../assets/painting-img/office.jpg'
 
 export const PaintingPlanes = (scene: Scene) => {
 
@@ -29,12 +30,12 @@ export const PaintingPlanes = (scene: Scene) => {
 
     let paintingPos: any = [];
 
-    paintingPos.push([1,-788.920, 195.099, 1170.46, Math.PI/2, Math.PI/1]);
-    paintingPos.push([1,-788.920, 195.099, 898.41, Math.PI/2, Math.PI/1]);
+    paintingPos.push([1,-788.920, 195.099, 1170.46, Math.PI/2, Math.PI/1, Math.PI/1]);
+    paintingPos.push([1,-788.920, 195.099, 898.41, Math.PI/2, Math.PI/1, Math.PI/1]);
 
-    paintingPos.push([1,295.23, 576.07, -1037.44, Math.PI/1, (1.99*Math.PI)/180]);
-    paintingPos.push([1,1.09, 578.35, -1029.06, Math.PI/1, (1.99*Math.PI)/180]);
-    paintingPos.push([1,-282.25, 577.23, -1033.88, Math.PI/1, (1.99*Math.PI)/180]);
+    paintingPos.push([1,295.23, 576.07, -1037.44, Math.PI/1, (1.99*Math.PI)/180, Math.PI/1]);
+    paintingPos.push([1,1.09, 578.35, -1029.06, Math.PI/1, (1.99*Math.PI)/180, Math.PI/1]);
+    paintingPos.push([1,-282.25, 577.23, -1033.88, Math.PI/1, (1.99*Math.PI)/180, Math.PI/1]);
     
     let paintingArr: any = [];
 
@@ -48,6 +49,26 @@ export const PaintingPlanes = (scene: Scene) => {
 
         paintingArr[i].rotation.y = paintingPos[i][4];
         paintingArr[i].rotation.x = paintingPos[i][5];
+        paintingArr[i].rotation.z = paintingPos[i][6];
     }
+
+   const img1 = new StandardMaterial('img1', scene);
+   img1.diffuseColor = new Color3(1, 1, 1);
+   img1.emissiveColor = new Color3(1, 1, 1);
+   img1.diffuseTexture = new Texture(bar, scene);
+   paintingArr[0].material = img1;
+
+   const img2 = new StandardMaterial('img2', scene);
+   img2.diffuseColor = new Color3(1, 1, 1);
+   img2.emissiveColor = new Color3(1, 1, 1);
+   img2.diffuseTexture = new Texture(glasses, scene);
+   paintingArr[1].material = img2;
+
+   const img3 = new StandardMaterial('img3', scene);
+   img3.diffuseColor = new Color3(1, 1, 1);
+   img3.emissiveColor = new Color3(1, 1, 1);
+   img3.diffuseTexture = new Texture(office, scene);
+   paintings.material = img3;
+
     return scene;
 }
