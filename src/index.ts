@@ -25,9 +25,7 @@ export const babylonInit = async (): Promise<void>  => {
     
    
 
-    scene.debugLayer.show({
-        embedMode: true,
-      });
+    scene.debugLayer.show();
     // Register a render loop to repeatedly render the scene
     engine.runRenderLoop(function () {
         scene.render();

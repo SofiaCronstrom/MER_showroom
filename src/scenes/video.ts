@@ -7,9 +7,10 @@ import {
     MeshBuilder,
     Mesh,
     StandardMaterial,
-    VideoTexture
+    VideoTexture,
+    PointerEventTypes
  } from "@babylonjs/core";
-import { PointerEventTypes } from "babylonjs";
+
 
 import video from '../../assets/video.mp4';
 
@@ -25,7 +26,7 @@ import video from '../../assets/video.mp4';
    //MP4
    const videoTextMat = new StandardMaterial('materialVideo', scene);
    const videoTexture = new VideoTexture('videotexture', video, scene);
-   videoTexture.video.paused;
+   videoTexture.video.pause();
    
    videoTextMat.diffuseTexture = videoTexture;
    videoTextMat.roughness = 1;

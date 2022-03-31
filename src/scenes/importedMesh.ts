@@ -108,7 +108,7 @@ export const ImportMeshes = async (scene: Scene) =>{
     const planeClone = planeUnderChair.clone('sofaPlane');
     planeClone.position = new Vector3(-565.949,-25.63,-14.63)
 
-    //LIGHT TO CAST SHADOW UNDER IMPORTRESULT4.MESHES
+    //LIGHT TO CAST SHADOW UNDER IMPORTRESULT4 and 3.MESHES
     const light3 = new DirectionalLight("light3", new Vector3(540, -1794, -1329),scene);
           light3.direction = new Vector3(0.32, -0.55, -0.77)
           light3.intensity = 0.3
@@ -126,7 +126,7 @@ export const ImportMeshes = async (scene: Scene) =>{
         }
 
         for (let i in importResult3.meshes){
-            shadow.getShadowMap().renderList.push(importResult3.meshes[i]);
+            //shadow.getShadowMap().renderList.push(importResult3.meshes[i]);
 
             importResult3.meshes[i].actionManager = new ActionManager(scene);
             importResult3.meshes[i].actionManager!.registerAction(new ExecuteCodeAction(ActionManager.OnPointerOverTrigger, function(ev){	

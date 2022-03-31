@@ -40,21 +40,13 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         scene.ambientColor = new Color3(0.980, 0.976, 0.901);
         scene.gravity = new Vector3(0, -0.05, 0);
 
-        // // // This creates and positions a free camera (non-mesh)
-        //     const camera = new ArcRotateCamera(
-        //         "camera",
-        //         0,
-        //         Math.PI / 3,
-        //         10,
-        //         new Vector3(0, 0, 0),
-        //         scene
-        //     );
+      
             
             // //FREE CAMERA
             const camera = new FreeCamera("FreeCamera", new Vector3(0,0,0), scene);
             
         // This targets the camera to scene origin
-                //camera.setTarget(Vector3.Zero());
+                
                 camera.rotation = new Vector3(0,-15,0)
                 camera.speed = 111;
                 camera.position = new Vector3(741.7, 100,1497.91)
@@ -85,7 +77,7 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         WindowPlanes(scene);
         ImportMeshes(scene);
         pillarMeshes(scene);
-        //Video(scene);
+        Video(scene);
         Railing(scene);
         PaintingPlanes(scene);
         woodPlane(scene);

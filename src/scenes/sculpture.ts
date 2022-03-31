@@ -22,7 +22,7 @@ import { Engine,
     const pbr = new PBRSpecularGlossinessMaterial("pbr", scene);
     pbr.diffuseColor = new Color3(1.0, 0.766, 0.336);
     pbr.specularColor = new Color3(1.0, 0.766, 0.336);
-    pbr.glossiness = 0.4;
+    pbr.glossiness = 0.8;
     sphere.material = pbr;
 
     return scene;
