@@ -3,9 +3,6 @@ import {
     Vector3,
     Mesh,
     MeshBuilder,
-    StandardMaterial,
-    Color3,
-    Texture
  } from "@babylonjs/core";
 
 

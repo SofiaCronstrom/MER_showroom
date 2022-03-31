@@ -8,11 +8,7 @@ import leather from '../assets/leather.jpg'
 import leatherMap from '../assets/leatherMap.png'
 export const createColorMaterial = (scene: Scene) => {
 
-    const roomColor: StandardMaterial = new StandardMaterial('roomColor', scene);
-    roomColor.diffuseColor = new Color3(0.906, 0.910, 0.910);
-    roomColor.emissiveColor = new Color3(0.302,0.302,0.302) 
-    roomColor.ambientColor = new Color3(0.286,0.286,0.286)
-    roomColor.specularColor = new Color3(0.8, 0.796, 0.486)
+   
     
    
    const chairColor: StandardMaterial = new StandardMaterial('chairmaterial', scene);
@@ -28,8 +24,6 @@ export const createColorMaterial = (scene: Scene) => {
  
     return {
             
-           
-            roomColor,
             chairColor,
             sofaColor
             

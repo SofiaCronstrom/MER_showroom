@@ -20,13 +20,9 @@ import { meshUboDeclaration } from "@babylonjs/core/Shaders/ShadersInclude/meshU
 import bar from '../../assets/painting-img/bar.jpg'
 import glasses from '../../assets/painting-img/glasses.jpg'
 import office from '../../assets/painting-img/office.jpg'
-import yellow from '../../assets/yellow.png'
-import yellowMap from '../../assets/YellowMap.png'
-import green from '../../assets/green.png'
-import greenMap from '../../assets/greenMap.png'
-import stick from '../../assets/stick.png'
-import stickMap from '../../assets/stickMap.png'
-
+import chair from '../../assets/painting-img/chair.png'
+import tray from '../../assets/painting-img/tray.png'
+import puff from '../../assets/painting-img/puff.jpg'
 
 export const PaintingPlanes = (scene: Scene) => {
 
@@ -40,9 +36,9 @@ export const PaintingPlanes = (scene: Scene) => {
     paintingPos.push([1,-788.920, 195.099, 1170.46, Math.PI/2, Math.PI/1, Math.PI/1]);
     paintingPos.push([1,-788.920, 195.099, 898.41, Math.PI/2, Math.PI/1, Math.PI/1]);
 
-    paintingPos.push([1,295.23, 576.07, -1037.44, Math.PI/1, (1.99*Math.PI)/180, Math.PI/1]);
-    paintingPos.push([1,1.09, 578.35, -1029.06, Math.PI/1, (1.99*Math.PI)/180, Math.PI/1]);
-    paintingPos.push([1,-282.25, 577.23, -1033.88, Math.PI/1, (1.99*Math.PI)/180, Math.PI/1]);
+    paintingPos.push([1,295.23, 576.07, -1037.44, Math.PI/1, (1.99*Math.PI)/180, 0]);
+    paintingPos.push([1,1.09, 578.35, -1029.06, Math.PI/1, (1.99*Math.PI)/180, 0]);
+    paintingPos.push([1,-282.25, 577.23, -1033.88, Math.PI/1, (1.99*Math.PI)/180, 0]);
     
     let paintingArr: any = [];
 
@@ -78,30 +74,23 @@ export const PaintingPlanes = (scene: Scene) => {
    paintings.material = img3;
 
    const img4 = new StandardMaterial('img4', scene);
-   img4.diffuseColor = new Color3(0.906, 0.910, 0.910);
-   img4.emissiveColor = new Color3(0.98,0.98,0.98) 
-   img4.ambientColor = new Color3(0.286,0.286,0.286)
+   img4.diffuseColor = new Color3(1,1,1);
+   img4.emissiveColor = new Color3(1,1,1) 
    img4.specularColor = new Color3(0,0,0)
-   img4.diffuseTexture = new Texture(yellow, scene);
-   img4.bumpTexture = new Texture(yellowMap, scene);
+   img4.diffuseTexture = new Texture(chair, scene);
    paintingArr[2].material = img4;
 
    const img5 = new StandardMaterial('img4', scene);
-   img5.diffuseColor = new Color3(0.906, 0.910, 0.910);
-   img5.emissiveColor = new Color3(0.98,0.98,0.98);
-   img5.ambientColor = new Color3(0.286,0.286,0.286)
-   img5.specularColor = new Color3(0,0,0)
-   img5.diffuseTexture = new Texture(stick, scene);
-   img5.bumpTexture = new Texture(stickMap, scene);
+   img5.diffuseColor = new Color3(1,1,1);
+   img5.emissiveColor = new Color3(1,1,1);
+   img5.diffuseTexture = new Texture(tray, scene);
    paintingArr[3].material = img5;
 
    const img6 = new StandardMaterial('img4', scene);
-   img6.diffuseColor = new Color3(0.906, 0.910, 0.910);
-   img6.emissiveColor = new Color3(0.98,0.98,0.98);
-   img6.ambientColor = new Color3(0.286,0.286,0.286)
+   img6.diffuseColor = new Color3(1,1,1);
+   img6.emissiveColor = new Color3(1,1,1);
    img6.specularColor = new Color3(0,0,0)
-   img6.diffuseTexture = new Texture(green, scene);
-   img6.bumpTexture = new Texture(greenMap, scene);
+   img6.diffuseTexture = new Texture(puff, scene);
    paintingArr[4].material = img6;
 
 
