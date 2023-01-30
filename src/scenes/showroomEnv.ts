@@ -37,7 +37,7 @@ export class LoadModelAndEnvScene implements CreateSceneClass {
         // This creates a basic Babylon Scene object (non-mesh)
         const scene = new Scene(engine);
         scene.clearColor = new Color4(0,0,0);
-        scene.ambientColor = new Color3(0.980, 0.976, 0.901);
+        scene.ambientColor = new Color3(0.961, 0.910, 0.698);
         scene.gravity = new Vector3(0, -0.05, 0);
 
       

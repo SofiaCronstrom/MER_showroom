@@ -11,7 +11,7 @@ export const babylonInit = async (): Promise<void>  => {
     // get the module to load
     const moduleName = getModuleToLoad();
     const createSceneModule = await getSceneModuleWithName(moduleName);
-
+  
     // Execute the pretasks, if defined
     await Promise.all(createSceneModule.preTasks || []);
     // Get the canvas element
