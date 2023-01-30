@@ -18,14 +18,22 @@ export const babylonInit = async (): Promise<void>  => {
     const canvas = document.getElementById("renderCanvas") as HTMLCanvasElement; 
     // Generate the BABYLON 3D engine
     const engine = new Engine(canvas, true); 
-   
+    //engine.displayLoadingUI();
     // Create the scene
     const scene = await createSceneModule.createScene(engine, canvas);
-   
+    //engine.hideLoadingUI();
     
    
 
-    scene.debugLayer.show();
+   // scene.debugLayer.show();
+    
+    engine.displayLoadingUI();
+    
+    scene.executeWhenReady(function() {
+        engine.hideLoadingUI();
+     
+    })
+
     // Register a render loop to repeatedly render the scene
     engine.runRenderLoop(function () {
         scene.render();
